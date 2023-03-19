@@ -25,4 +25,9 @@ class Project extends Model
     {
         return $this->created_at->format('d F Y');
     }
+
+    public function getGithubUrlAttribute(): string
+    {
+        return sprintf("https://github.com/%s", $this->github_profile);
+    }
 }

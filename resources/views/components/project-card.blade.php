@@ -1,5 +1,6 @@
 <article class="flex flex-col m-5 bg-white">
-    <a href="#" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
+    <a href="{{route('project.show', $project->id)}}"
+        class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
         <span class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
         <div class="sm:flex sm:justify-between sm:gap-4">
