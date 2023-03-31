@@ -1,7 +1,7 @@
 # Code Review Pals
 
+![codereviewpalscom-logo](https://user-images.githubusercontent.com/28778964/229085210-47da045a-c520-4e47-98c5-ced7bc837298.jpg)
 
-![Uploading codereviewpalscom-logo.jpg…]()
 
 
 Sure, here's a possible description for the project's README.md on GitHub:
