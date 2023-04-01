@@ -7,18 +7,18 @@ use Illuminate\Support\Arr;
 class UiAvatar
 {
     /**
-     * @param string      $name
-     * @param int|null    $size
-     * @param string|null $color
-     * @param string|null $background
-     * @param bool|null   $bold
+     * @param string $name
+     * @param mixed  $size
+     * @param mixed  $color
+     * @param mixed  $background
+     * @param mixed  $bold
      */
     public function __construct(
         private readonly string $name,
-        private ?int            $size = null,
-        private ?string         $color = null,
-        private ?string         $background = null,
-        private ?bool           $bold = null,
+        private mixed           $size = null,
+        private mixed           $color = null,
+        private mixed           $background = null,
+        private mixed           $bold = null,
     )
     {
         $this->size = $this->size ?? config('ui-avatar.default.size');
@@ -40,6 +40,6 @@ class UiAvatar
             'bold'       => $this->bold,
         ]);
 
-        return url(config('ui-avatar.base_path')) . '?' . $query;
+        return config('ui-avatar.base_path') . '?' . $query;
     }
 }
