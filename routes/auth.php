@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -12,6 +13,12 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+    Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect'])
+                ->name('socialite.redirect');
+
+    Route::get('/auth/callback/{provider}', [SocialiteController::class, 'callback'])
+        ->name('socialite.callback');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
