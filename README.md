@@ -1,7 +1,9 @@
 # Code Review Pals
 
-![codereviewpalscom-logo](https://user-images.githubusercontent.com/28778964/229085210-47da045a-c520-4e47-98c5-ced7bc837298.jpg)
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28778964/229258757-e8d3e747-a496-4e44-abe1-b929888c2d9c.jpg" />
+</p>
 
 Code Review Pals is a community-driven platform for code review, designed to help developers learn from each other and improve their skills by providing a place to share their code and get feedback from peers.
 
