@@ -9,3 +9,7 @@ Our goal is to encourage developers of all levels to submit their code for revie
 
 ## Contribution
 If you're interested in contributing to Code Review Pals, please check out the [Issues](https://github.com/geeksesi/code-review-pals/issues) and join our community. Together, we can make code review a more accessible and rewarding experience for everyone.
+
+## License
+
+Code Review Pals is Licensed under The MIT License (MIT). Please see [License File](https://github.com/geeksesi/code-review-pals/blob/master/LICENSE) for more information.
