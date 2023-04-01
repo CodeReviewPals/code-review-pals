@@ -3,12 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 use App\Services\Avatar\UiAvatar;
 use App\Enums\Auth\SocialiteProvider;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -81,15 +81,15 @@ class User extends Authenticatable
     public function isAuthUser(): Attribute
     {
         return Attribute::make(
-            get: fn() => ! $this->login_provider instanceof SocialiteProvider,
+            get: fn() => !$this->login_provider instanceof SocialiteProvider,
         );
     }
 
     /**
-     * @return HasMany
+     * @return HasMany<PullRequest>
      */
-    public function pulls(): HasMany
+    public function pullRequests(): HasMany
     {
-        return $this->hasMany(Pull::class);
+        return $this->hasMany(PullRequest::class);
     }
 }

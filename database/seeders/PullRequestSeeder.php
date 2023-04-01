@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PullRequest;
 use Illuminate\Database\Seeder;
 
-class PullSeeder extends Seeder
+class PullRequestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
+        PullRequest::factory(50)->create();
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Enums\Pull\Status;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\PullRequest\Status;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Pull extends Model
+class PullRequest extends Model
 {
     use HasFactory;
     use SoftDeletes;
