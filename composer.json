@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -12,6 +15,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
+        "spatie/laravel-data": "^3.2",
         "sammyjo20/saloon": "^2.0",
         "sammyjo20/saloon-laravel": "^2.0",
         "tightenco/ziggy": "^1.0"
