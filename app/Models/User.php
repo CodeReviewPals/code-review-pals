@@ -65,7 +65,7 @@ class User extends Authenticatable
     /**
      * Implement logic with file upload or remote avatar.
      *
-     * @return Attribute
+     * @return Attribute<string, never>
      */
     public function avatar(): Attribute
     {
@@ -75,7 +75,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return Attribute
+     * @return Attribute<bool, never>
      */
     public function isAuthUser(): Attribute
     {
