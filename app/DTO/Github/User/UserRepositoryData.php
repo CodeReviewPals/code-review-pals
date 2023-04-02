@@ -4,7 +4,7 @@ namespace App\DTO\Github\User;
 
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Data;
-use app\DTO\Github\Repository\OwnerData;
+use App\DTO\Github\Repository\OwnerData;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Attributes\WithTransformer;

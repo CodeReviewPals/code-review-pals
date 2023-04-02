@@ -1,6 +1,6 @@
 <?php
 
-namespace app\DTO\Github\Repository;
+namespace App\DTO\Github\Repository;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\MapInputName;
