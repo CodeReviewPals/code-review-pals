@@ -18,16 +18,6 @@ class GetUserRepositories extends Request
     protected Method $method = Method::GET;
 
     /**
-     * @param Response $response
-     *
-     * @return DataCollection<int|string, UserRepositoryData>
-     */
-    public function createDtoFromResponse(Response $response): DataCollection
-    {
-        return UserRepositoryData::collection($response->collect());
-    }
-
-    /**
      * @param string $username
      */
     public function __construct(
@@ -42,5 +32,15 @@ class GetUserRepositories extends Request
     public function resolveEndpoint(): string
     {
         return '/users/' . $this->username . '/repos';
+    }
+
+    /**
+     * @param Response $response
+     *
+     * @return DataCollection<int|string, UserRepositoryData>
+     */
+    public function createDtoFromResponse(Response $response): DataCollection
+    {
+        return UserRepositoryData::collection($response->collect());
     }
 }
