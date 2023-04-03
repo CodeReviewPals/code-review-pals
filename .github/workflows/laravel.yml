@@ -34,3 +34,5 @@ jobs:
                       GNUTLS_CPUID_OVERRIDE=0x1 npm i
                       php artisan migrate --force
                       npm run build
+                      php artisan view:cache
+                      php artisan optimize
