@@ -21,4 +21,14 @@ class GithubApiConnector extends Connector
     {
         return (string)config('github.api.base_path');
     }
+
+    /**
+     * @return string[]
+     */
+    protected function defaultHeaders(): array
+    {
+        return [
+            'accept' => 'application/vnd.github+json',
+        ];
+    }
 }
