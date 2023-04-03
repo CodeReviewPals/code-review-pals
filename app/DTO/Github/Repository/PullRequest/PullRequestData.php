@@ -32,11 +32,11 @@ class PullRequestData extends Data
         public ?CarbonImmutable $closedAt,
         #[WithTransformer(DateTimeInterfaceTransformer::class)]
         public ?CarbonImmutable $mergedAt,
-        public int              $comments,
-        public int              $reviewComments,
-        public int              $commits,
-        public int              $additions,
-        public int              $deletions,
-        public int              $changedFiles,
+        public ?int             $comments,
+        public ?int             $reviewComments,
+        public ?int             $commits,
+        public ?int             $additions,
+        public ?int             $deletions,
+        public ?int             $changedFiles,
     ) {}
 }
