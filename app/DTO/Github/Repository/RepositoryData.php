@@ -29,6 +29,7 @@ class RepositoryData extends Data
         public int              $stargazersCount,
         public int              $watchersCount,
         public string           $language,
+        /** @var array|string[] $topics */
         public array            $topics,
         public string           $defaultBranch,
         #[WithTransformer(DateTimeInterfaceTransformer::class)]
