@@ -36,6 +36,16 @@ class GetPullRequestInformation extends Request
     }
 
     /**
+     * @return string[]
+     */
+    protected function defaultHeaders(): array
+    {
+        return [
+            'accept' => 'application/vnd.github+json',
+        ];
+    }
+
+    /**
      * @param Response $response
      *
      * @return PullRequestData
