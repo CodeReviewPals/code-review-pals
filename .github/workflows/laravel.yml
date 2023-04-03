@@ -27,7 +27,7 @@ jobs:
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   port: ${{ secrets.SSH_PORT }}
                   script: |
-                      cd /home/${{secrets.USERNAME}}/public_html/review-as-a-service
+                      cd /home/${{secrets.SSH_USERNAME}}/public_html/review-as-a-service
                       git pull
                       composer i
                       php artisan migrate --force
