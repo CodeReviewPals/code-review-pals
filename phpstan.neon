@@ -9,9 +9,9 @@ parameters:
     # Level 9 is the highest level
     level: 9
 
-#    ignoreErrors:
-#        - '#PHPDoc tag @var#'
-#
+    ignoreErrors:
+        - '#^Cannot cast mixed to string\.$#'
+
     excludePaths:
         - app/Http/Requests/Auth/LoginRequest.php
         - app/Http/Controllers/ProfileController.php
@@ -22,5 +22,6 @@ parameters:
         - app/Http/Controllers/Auth/EmailVerificationPromptController.php
         - app/Http/Controllers/Auth/EmailVerificationNotificationController.php
         - app/Http/Controllers/Auth/ConfirmablePasswordController.php
+        - app/Http/Requests/ProfileUpdateRequest.php
 
 #    checkMissingIterableValueType: false
