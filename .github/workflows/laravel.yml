@@ -1,0 +1,38 @@
+name: Laravel
+
+
+on:
+    push:
+        branches: [master]
+permissions:
+    contents: read
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Validate composer.json and composer.lock
+              run: composer validate --strict
+
+    deploy:
+        name: deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: executing remote ssh commands using password
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT }}
+                  script: |
+                      cd /home/${{secrets.SSH_USERNAME}}/public_html/review-as-a-service
+                      bash
+                      GNUTLS_CPUID_OVERRIDE=0x1 git pull
+                      GNUTLS_CPUID_OVERRIDE=0x1 composer i
+                      GNUTLS_CPUID_OVERRIDE=0x1 npm i
+                      php artisan migrate --force
+                      npm run build
+                      php artisan view:cache
+                      php artisan optimize
