@@ -30,4 +30,6 @@ jobs:
                       cd /home/${{secrets.SSH_USERNAME}}/public_html/review-as-a-service
                       git pull
                       composer i
+                      npm i
                       php artisan migrate --force
+                      npm run build
