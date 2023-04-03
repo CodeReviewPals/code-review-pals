@@ -28,6 +28,7 @@ jobs:
                   port: ${{ secrets.SSH_PORT }}
                   script: |
                       cd /home/${{secrets.SSH_USERNAME}}/public_html/review-as-a-service
+                      bash
                       git pull
                       composer i
                       npm i
