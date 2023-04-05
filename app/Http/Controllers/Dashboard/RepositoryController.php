@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRepositoryRequest;
 use App\Http\Requests\UpdateRepositoryRequest;
 use App\Models\Repository;
+use Inertia\Inertia;
 
 class RepositoryController extends Controller
 {
@@ -14,7 +15,8 @@ class RepositoryController extends Controller
      */
     public function index()
     {
-        //
+        $repositories = Repository::paginate();
+        return Inertia::render('Dashboard/Repository/index', ["repository" => $repositories]);
     }
 
     /**
