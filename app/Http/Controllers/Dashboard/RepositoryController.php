@@ -16,7 +16,7 @@ class RepositoryController extends Controller
     public function index()
     {
         $repositories = Repository::paginate();
-        return Inertia::render('Dashboard/Repository/index', ["repository" => $repositories]);
+        return Inertia::render('Dashboard/Repository/index', ["repositories" => $repositories]);
     }
 
     /**
