@@ -25,7 +25,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth', 'verified'])->name("dashboard.")->group(function () {
+Route::middleware(['auth', 'verified'])->name("dashboard.")->prefix("/dashboard")->group(function () {
     Route::get('/', \App\Http\Controllers\Dashboard\DashboardController::class)->name("index");
     Route::resources([
         'repository' => \App\Http\Controllers\Dashboard\RepositoryController::class,
