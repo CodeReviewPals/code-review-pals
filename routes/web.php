@@ -33,6 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard');
     });
+    Route::resources([
+        'repository' => \App\Http\Controllers\Dashboard\RepositoryController::class,
+    ]);
 })->name('dashboard.');
 
 Route::middleware('auth')->group(function () {
