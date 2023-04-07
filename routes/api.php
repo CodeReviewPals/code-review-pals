@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth:sanctum', 'api'])->prefix('/dashboard')->name("dashboard.")->group(function () {
+    Route::get('/third-party-repo-list/{provider}', \App\Http\Controllers\Dashboard\API\ThirdPartyRepositoriesListController::class)->name("third-party-repo-list");
+});

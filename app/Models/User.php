@@ -83,4 +83,9 @@ class User extends Authenticatable
             get: fn() => !$this->login_provider instanceof SocialiteProvider,
         );
     }
+
+    public function tokenAbilities(): array
+    {
+        return ['*'];
+    }
 }
