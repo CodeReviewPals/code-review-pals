@@ -44,7 +44,8 @@ class  SocialiteController extends Controller
         ]);
 
         Auth::login($user);
-
+        $token = $user->createToken('pal', $user->tokenAbilities())->plainTextToken;
+        request()->session()->put('pal_token', $token);
         return to_route('dashboard.index');
     }
 }
