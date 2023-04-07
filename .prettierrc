@@ -1,0 +1,10 @@
+{
+    "proseWrap": "never",
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs:": false,
+    "semi": true,
+    "quoteProps": "consistent",
+    "endOfLine": "lf",
+    "singleQuote": true
+}
