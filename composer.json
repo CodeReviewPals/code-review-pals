@@ -15,9 +15,9 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
-        "spatie/laravel-data": "^3.2",
         "sammyjo20/saloon": "^2.0",
         "sammyjo20/saloon-laravel": "^2.0",
+        "spatie/laravel-data": "^3.2",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
