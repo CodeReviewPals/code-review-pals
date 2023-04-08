@@ -37,7 +37,7 @@ class  SocialiteController extends Controller
         ], [
             'avatar_url'           => $userData->getAvatar(),
             'password'             => Hash::make($userData->refreshToken), // @phpstan-ignore-line
-            'name'                 => $userData->getName(),
+            'name'                 => $userData->getNickname(),
             'email'                => $userData->getEmail(),
             'github_token'         => $userData->token, // @phpstan-ignore-line
             'github_refresh_token' => $userData->refreshToken, // @phpstan-ignore-line
