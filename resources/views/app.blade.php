@@ -19,4 +19,9 @@
     <body class="font-sans antialiased">
         @inertia
     </body>
+    <script>
+        window.Laravel = {!! json_encode([
+            'apiToken' => session()->get('pal_token') ?? null,
+        ]) !!};
+    </script>
 </html>
