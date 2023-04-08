@@ -1,9 +1,16 @@
 import DashboardTable from "@/Components/Dashboard/Table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
+import GithubLogo from "@/../images/dashboard/github.svg";
+import { useState } from "react";
+import DashboardModal from "@/Components/Dashboard/Modal";
+import AddRepositoryModal from "./AddRepositoryModal";
 
 export default function Index({ auth, repositories }) {
-    console.log(repositories);
+    const [thirdPartyModal, setThirdPartyModal] = useState({ active: false, provider: null });
+    const closeThirdPartyModal = () => {
+        setThirdPartyModal({ active: false });
+    };
     const rowRender = ($data) => {
         return (
             <tr>
@@ -82,26 +89,20 @@ export default function Index({ auth, repositories }) {
 
     const addRepositoryFromThirdPartyButton = () => {
         return (
-            <Link href={route(`dashboard.index`)} className="flex items-center mt-4 gap-x-3">
+            <div onClick={githubRepositoryModal} className="flex items-center mt-4 gap-x-3">
                 <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
-                    <span>Add</span>
+                    <img className="h-6" src={GithubLogo} />
+                    <span>Add Repository</span>
                 </button>
-            </Link>
+            </div>
         );
+    };
+
+    const githubRepositoryModal = () => {
+        setThirdPartyModal({
+            active: true,
+            provider: "github",
+        });
     };
 
     return (
@@ -127,6 +128,15 @@ export default function Index({ auth, repositories }) {
                     customAddButton={addRepositoryFromThirdPartyButton}
                 />
             </div>
+            {thirdPartyModal.active && (
+                <DashboardModal thirdPartyModal={thirdPartyModal} closeThirdPartyModal={closeThirdPartyModal}>
+                    <AddRepositoryModal
+                        auth={auth}
+                        provider={thirdPartyModal.provider}
+                        closeThirdPartyModal={closeThirdPartyModal}
+                    />
+                </DashboardModal>
+            )}
         </AuthenticatedLayout>
     );
 }
