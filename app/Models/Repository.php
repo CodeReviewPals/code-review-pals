@@ -19,29 +19,19 @@ class Repository extends Model
         "code_languages",
     ];
 
-    /**
-     * cast tags to Array
-     *
-     * @return Attribute<string, never>
-     */
     public function tags(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => explode(",", $value),
-            set: fn ($value) => implode(",", $value)
+            get: fn (string $value) => explode(",", $value),
+            set: fn (array $value) => implode(",", $value)
         );
     }
 
-    /**
-     * cast tags to Array
-     *
-     * @return Attribute<string, never>
-     */
-    public function code_languages(): Attribute
+    public function codeLanguages(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => explode(",", $value),
-            set: fn ($value) => implode(",", $value)
+            get: fn (string $value) => explode(",", $value),
+            set: fn (array $value) => implode(",", $value)
         );
     }
 }
