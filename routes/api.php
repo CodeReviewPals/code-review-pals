@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['auth:sanctum', 'api'])->prefix('/dashboard')->name("dashboard.")->group(function () {
-    Route::get('/third-party-repo-list/{provider}', \App\Http\Controllers\Dashboard\API\ThirdPartyRepositoriesListController::class)->name("third-party-repo-list");
+    Route::get('/third-party-repositories/{provider}', [\App\Http\Controllers\Dashboard\API\ThirdPartyRepositoriesController::class, "index"])->name("third-party-repositories.list");
+    Route::post('/third-party-repositories', [\App\Http\Controllers\Dashboard\API\ThirdPartyRepositoriesController::class, "store"])->name("third-party-repositories.store");
 });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Dashboard\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\API\StoreRepositoryFromThirdPartyRequest;
 use App\Http\Resources\Dashboard\ThirdPartyRepositoryResource;
+use App\Models\Repository;
 use Illuminate\Http\Request;
 
-class ThirdPartyRepositoriesListController extends Controller
+class ThirdPartyRepositoriesController extends Controller
 {
 
     /**
@@ -14,9 +16,9 @@ class ThirdPartyRepositoriesListController extends Controller
      *
      * @param Request $request
      * @param string $provider
-     * @return void
+     * @return \Response
      */
-    public function __invoke(Request $request, string $provider)
+    public function index(Request $request, string $provider)
     {
         $data = collect([
             json_decode(json_encode([
@@ -26,5 +28,19 @@ class ThirdPartyRepositoriesListController extends Controller
             ]), false)
         ]);
         return ThirdPartyRepositoryResource::collection($data);
+    }
+
+
+    /**
+     * @todo implement
+     *
+     * @param StoreRepositoryFromThirdPartyRequest $request
+     * @return void
+     */
+    public function store(StoreRepositoryFromThirdPartyRequest $request)
+    {
+        // fetch data
+        // check if duplicate repository throw error
+        // store repository
     }
 }
