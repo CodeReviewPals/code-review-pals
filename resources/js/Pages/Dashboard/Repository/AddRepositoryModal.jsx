@@ -1,16 +1,10 @@
-import { useState } from "react";
-import GithubLogo from "@/../images/dashboard/github.svg";
+import { useState } from 'react';
+import GithubLogo from '@/../images/dashboard/github.svg';
+import { router } from '@inertiajs/react';
 
-export default function AddRepositoryModal({ auth, provider, closeThirdPartyModal }) {
-    const [repositories, setRepositories] = useState(undefined);
+export default function AddRepositoryModal({ repositories }) {
     const [actionLoading, setActionLoading] = useState(false);
     const providerLogos = { github: GithubLogo };
-
-    const fetchData = () => {
-        window.axios.get(route("api.dashboard.third-party-repositories.list", { provider: provider })).then((res) => {
-            setRepositories(res.data.data);
-        });
-    };
 
     const renderRepository = (repo, index) => {
         return (
@@ -35,14 +29,8 @@ export default function AddRepositoryModal({ auth, provider, closeThirdPartyModa
             return;
         }
         setActionLoading(true);
-        window.axios.post(route("api.dashboard.third-party-repositories.store"), repo).then((res) => {
-            closeThirdPartyModal();
-        });
+        router.post(route('dashboard.repository.store'), repo);
     };
-
-    if (typeof repositories === "undefined") {
-        fetchData();
-    }
 
     return (
         <div className="">

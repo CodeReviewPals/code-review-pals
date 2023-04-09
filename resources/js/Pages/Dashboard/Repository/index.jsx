@@ -1,26 +1,30 @@
-import DashboardTable from "@/Components/Dashboard/Table";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
-import GithubLogo from "@/../images/dashboard/github.svg";
-import { useState } from "react";
-import DashboardModal from "@/Components/Dashboard/Modal";
-import AddRepositoryModal from "./AddRepositoryModal";
+import DashboardTable from '@/Components/Dashboard/Table';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { Head, Link, router } from '@inertiajs/react';
+import GithubLogo from '@/../images/dashboard/github.svg';
+import { useState } from 'react';
+import DashboardModal from '@/Components/Dashboard/Modal';
+import AddRepositoryModal from './AddRepositoryModal';
 
-export default function Index({ auth, repositories }) {
-    const [thirdPartyModal, setThirdPartyModal] = useState({ active: false, provider: null });
+export default function Index({ auth, repositories, thirdParty }) {
+    const [thirdPartyModal, setThirdPartyModal] = useState({
+        active: thirdParty.active || false,
+        provider: thirdParty.provider || null,
+        dataLoaded: thirdParty.repositories.length > 0 || false,
+    });
     const closeThirdPartyModal = () => {
-        setThirdPartyModal({ active: false });
+        setThirdPartyModal({ ...thirdPartyModal, active: false });
     };
     const rowRender = (data, index) => {
         return (
             <tr key={index}>
                 <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                     <div>
-                        <h6 className="text-gray-500 dark:text-gray-400 text-center">{data.id}</h6>{" "}
+                        <h6 className="text-gray-500 dark:text-gray-400 text-center">{data.id}</h6>{' '}
                     </div>
                 </td>
                 <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                    <h6 className="text-gray-500 dark:text-gray-400 text-lg">{data.title}</h6>{" "}
+                    <h6 className="text-gray-500 dark:text-gray-400 text-lg">{data.title}</h6>{' '}
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                     <div>
@@ -29,11 +33,11 @@ export default function Index({ auth, repositories }) {
                 </td>
 
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
-                    <p className="text-gray-500 dark:text-gray-400">{Object.values(data.tags).join(", ")}</p>
+                    <p className="text-gray-500 dark:text-gray-400">{Object.values(data.tags).join(', ')}</p>
                 </td>
 
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
-                    <p className="text-gray-500 dark:text-gray-400">{Object.values(data.code_languages).join(", ")}</p>
+                    <p className="text-gray-500 dark:text-gray-400">{Object.values(data.code_languages).join(', ')}</p>
                 </td>
                 {/* Action */}
                 <td className="px-4 py-4 text-sm whitespace-nowrap"></td>
@@ -53,10 +57,10 @@ export default function Index({ auth, repositories }) {
     };
 
     const githubRepositoryModal = () => {
-        setThirdPartyModal({
-            active: true,
-            provider: "github",
-        });
+        if (thirdPartyModal.dataLoaded) {
+            setThirdPartyModal({ ...thirdPartyModal, active: true });
+        }
+        router.get(route('dashboard.repository.index', { third_party_provider: 'github' }));
     };
 
     return (
@@ -64,7 +68,7 @@ export default function Index({ auth, repositories }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Repository{" "}
+                    Repository{' '}
                     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
                         {repositories.total} repository
                     </span>
@@ -78,17 +82,13 @@ export default function Index({ auth, repositories }) {
                     routePrefix="dashboard.repository"
                     rowRender={rowRender}
                     suffixName="Repository"
-                    columnsTitle={["id", "Title", "About", "Tags", "Languages", "actions"]}
+                    columnsTitle={['id', 'Title', 'About', 'Tags', 'Languages', 'actions']}
                     customAddButton={addRepositoryFromThirdPartyButton}
                 />
             </div>
             {thirdPartyModal.active && (
                 <DashboardModal thirdPartyModal={thirdPartyModal} closeThirdPartyModal={closeThirdPartyModal}>
-                    <AddRepositoryModal
-                        auth={auth}
-                        provider={thirdPartyModal.provider}
-                        closeThirdPartyModal={closeThirdPartyModal}
-                    />
+                    <AddRepositoryModal repositories={thirdParty.repositories} />
                 </DashboardModal>
             )}
         </AuthenticatedLayout>

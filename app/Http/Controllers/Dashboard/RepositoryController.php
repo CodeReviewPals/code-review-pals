@@ -6,17 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRepositoryRequest;
 use App\Http\Requests\UpdateRepositoryRequest;
 use App\Models\Repository;
+use App\Services\RepositoryService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class RepositoryController extends Controller
 {
+
+    public function __construct(private RepositoryService $repositoryService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $repositories = Repository::paginate();
-        return Inertia::render('Dashboard/Repository/index', ["repositories" => $repositories]);
+        $repositories = Repository::where('user_id', auth()->user()->id)->paginate();
+        $thirdParyProvider = $request->get('third_party_provider', null);
+        $thirdPary = $this->repositoryService->getThirdPartyData($thirdParyProvider, auth()->user()->name);
+        return Inertia::render('Dashboard/Repository/index', ["repositories" => $repositories, "thirdParty" => $thirdPary]);
     }
 
     /**
