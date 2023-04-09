@@ -29,9 +29,9 @@ jobs:
                   script: |
                       cd /home/${{secrets.SSH_USERNAME}}/public_html/review-as-a-service
                       bash
-                      git pull
-                      composer i
-                      npm i
+                      GNUTLS_CPUID_OVERRIDE=0x1 git pull
+                      GNUTLS_CPUID_OVERRIDE=0x1 composer i
+                      GNUTLS_CPUID_OVERRIDE=0x1 npm i
                       php artisan migrate --force
                       npm run build
                       php artisan view:cache
