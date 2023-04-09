@@ -1,8 +1,12 @@
 <?php
 
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\API\ThirdPartyRepositoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +27,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::group([
+    'middleware' => ['auth'],
+], static function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::resource('repositories', RepositoryController::class)
+        ->only(['index', 'store']);
+
+    Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)
+        ->name('third-party-repositories.index');
+});
 
 require __DIR__ . '/auth.php';

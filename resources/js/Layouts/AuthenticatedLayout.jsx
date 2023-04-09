@@ -24,6 +24,13 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink
+                                    href={route('repositories.index')}
+                                    active={route().current('repositories.index')}
+                                >
+                                    Repository
+                                </NavLink>
                             </div>
                         </div>
 
@@ -36,7 +43,11 @@ export default function Authenticated({ user, header, children }) {
                                                 type=" button"
                                                 className=" inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <img className="h-8 w-8 mr-2 rounded-full object-cover" src={user.avatar} alt={user.name} />
+                                                <img
+                                                    className="h-8 w-8 mr-2 rounded-full object-cover"
+                                                    src={user.avatar}
+                                                    alt={user.name}
+                                                />
 
                                                 {user.name}
 
@@ -93,7 +104,7 @@ export default function Authenticated({ user, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard.index')}>
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
