@@ -21,6 +21,16 @@ namespace App\Models{
  * @property string|null $github_id
  * @property string|null $github_refresh_token
  * @property string|null $github_token
+ * @property string|null $node_id
+ * @property string|null $website
+ * @property string|null $location
+ * @property int|null $hireable
+ * @property string|null $twitter_username
+ * @property int|null $public_repos
+ * @property int|null $public_gists
+ * @property int|null $followers
+ * @property int|null $following
+ * @property string|null $bio
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property \App\Enums\Auth\SocialiteProvider|null $login_provider
@@ -36,18 +46,28 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatarUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFollowers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFollowing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubRefreshToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereHireable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLocation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLoginProvider($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNodeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePublicGists($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePublicRepos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwitterUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereWebsite($value)
  */
 	class User extends \Eloquent {}
 }

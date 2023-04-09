@@ -18263,6 +18263,165 @@
      
 }
 
+    namespace Saloon\Laravel\Facades { 
+            /**
+     * 
+     *
+     * @see \Saloon\Laravel\Saloon
+     */ 
+        class Saloon {
+                    /**
+         * Start mocking!
+         *
+         * @param array $responses
+         * @return \Saloon\Laravel\Http\Faking\MockClient 
+         * @throws \Saloon\Exceptions\InvalidMockResponseCaptureMethodException
+         * @static 
+         */ 
+        public static function fake($responses)
+        {
+                        return \Saloon\Laravel\Saloon::fake($responses);
+        }
+                    /**
+         * Retrieve the mock client from the container
+         *
+         * @return \Saloon\Laravel\Http\Faking\MockClient 
+         * @static 
+         */ 
+        public static function mockClient()
+        {
+                        return \Saloon\Laravel\Saloon::mockClient();
+        }
+                    /**
+         * Assert that a given request was sent.
+         *
+         * @param string|callable $value
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function assertSent($value)
+        {
+                        \Saloon\Laravel\Saloon::assertSent($value);
+        }
+                    /**
+         * Assert that a given request was not sent.
+         *
+         * @param string|callable $value
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function assertNotSent($value)
+        {
+                        \Saloon\Laravel\Saloon::assertNotSent($value);
+        }
+                    /**
+         * Assert JSON data was sent
+         *
+         * @param string $request
+         * @param array $data
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function assertSentJson($request, $data)
+        {
+                        \Saloon\Laravel\Saloon::assertSentJson($request, $data);
+        }
+                    /**
+         * Assert that nothing was sent.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNothingSent()
+        {
+                        \Saloon\Laravel\Saloon::assertNothingSent();
+        }
+                    /**
+         * Assert a request count has been met.
+         *
+         * @param int $count
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSentCount($count)
+        {
+                        \Saloon\Laravel\Saloon::assertSentCount($count);
+        }
+                    /**
+         * Start Saloon recording responses.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function record()
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        $instance->record();
+        }
+                    /**
+         * Stop Saloon recording responses.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function stopRecording()
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        $instance->stopRecording();
+        }
+                    /**
+         * Check if Saloon is recording
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function isRecording()
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        return $instance->isRecording();
+        }
+                    /**
+         * Record a response.
+         *
+         * @param \Response $response
+         * @return void 
+         * @static 
+         */ 
+        public static function recordResponse($response)
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        $instance->recordResponse($response);
+        }
+                    /**
+         * Get all the recorded responses.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getRecordedResponses()
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        return $instance->getRecordedResponses();
+        }
+                    /**
+         * Get the last response that Saloon recorded.
+         *
+         * @return \Response|null 
+         * @static 
+         */ 
+        public static function getLastRecordedResponse()
+        {
+                        /** @var \Saloon\Laravel\Saloon $instance */
+                        return $instance->getLastRecordedResponse();
+        }
+         
+    }
+     
+}
+
     namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
@@ -22638,6 +22797,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+            class Saloon extends \Saloon\Laravel\Facades\Saloon {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
