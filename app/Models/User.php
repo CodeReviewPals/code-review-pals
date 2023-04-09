@@ -8,6 +8,7 @@ use App\Services\Avatar\UiAvatar;
 use App\Enums\Auth\SocialiteProvider;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -84,8 +85,11 @@ class User extends Authenticatable
         );
     }
 
-    public function tokenAbilities(): array
+    /**
+     * @return HasMany<Repository>
+     */
+    public function repositories(): HasMany
     {
-        return ['*'];
+        return $this->hasMany(Repository::class);
     }
 }

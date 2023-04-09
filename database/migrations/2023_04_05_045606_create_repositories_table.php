@@ -1,24 +1,27 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('repositories', function (Blueprint $table) {
+        Schema::create('repositories', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users");
-            $table->string("title");
-            $table->string("about");
-            $table->string("tags");
-            $table->string("code_languages");
+            $table->string('node_id');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('full_name');
+            $table->string('description')->nullable();
+            $table->string('language')->nullable();
+            $table->string('html_url');
             $table->timestamps();
+            $table->softDeletes();
+            $table->unique(['node_id', 'full_name']);
         });
     }
 

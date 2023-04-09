@@ -26,8 +26,8 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
 
                                 <NavLink
-                                    href={route("dashboard.repository.index")}
-                                    active={route().current("dashboard.repository.index")}
+                                    href={route('repositories.index')}
+                                    active={route().current('repositories.index')}
                                 >
                                     Repository
                                 </NavLink>
@@ -104,7 +104,7 @@ export default function Authenticated({ user, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard.index')} active={route().current('dashboard.index')}>
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard.index')}>
                             Dashboard
                         </ResponsiveNavLink>
                     </div>

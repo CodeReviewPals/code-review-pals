@@ -76,7 +76,7 @@ export default function DashboardTable({
                                                     <th
                                                         key={index}
                                                         scope="col"
-                                                        className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-12 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400"
                                                     >
                                                         {title}
                                                     </th>
