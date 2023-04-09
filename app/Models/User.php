@@ -66,22 +66,22 @@ class User extends Authenticatable
     /**
      * Implement logic with file upload or remote avatar.
      *
-     * @return Attribute
+     * @return Attribute<string, never>
      */
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->avatar_url ?? (new UiAvatar($this->name))->make(),
+            get: fn () => $this->avatar_url ?? (new UiAvatar($this->name))->make(),
         );
     }
 
     /**
-     * @return Attribute
+     * @return Attribute<bool, never>
      */
     public function isAuthUser(): Attribute
     {
         return Attribute::make(
-            get: fn() => !$this->login_provider instanceof SocialiteProvider,
+            get: fn () => !$this->login_provider instanceof SocialiteProvider,
         );
     }
 
@@ -91,5 +91,14 @@ class User extends Authenticatable
     public function pullRequests(): HasMany
     {
         return $this->hasMany(PullRequest::class);
+    }
+
+
+    /**
+     * @return HasMany<Repository>
+     */
+    public function repositories(): HasMany
+    {
+        return $this->hasMany(Repository::class);
     }
 }

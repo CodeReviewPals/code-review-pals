@@ -1,0 +1,27 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+
+    # Level 9 is the highest level
+    level: 9
+
+    ignoreErrors:
+        - '#^Cannot cast mixed to string\.$#'
+
+    excludePaths:
+        - app/Http/Requests/Auth/LoginRequest.php
+        - app/Http/Controllers/ProfileController.php
+        - app/Http/Controllers/Auth/VerifyEmailController.php
+        - app/Http/Controllers/Auth/RegisteredUserController.php
+        - app/Http/Controllers/Auth/PasswordController.php
+        - app/Http/Controllers/Auth/NewPasswordController.php
+        - app/Http/Controllers/Auth/EmailVerificationPromptController.php
+        - app/Http/Controllers/Auth/EmailVerificationNotificationController.php
+        - app/Http/Controllers/Auth/ConfirmablePasswordController.php
+        - app/Http/Requests/ProfileUpdateRequest.php
+
+#    checkMissingIterableValueType: false

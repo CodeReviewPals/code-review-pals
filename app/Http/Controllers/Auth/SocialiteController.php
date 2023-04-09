@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Enums\Auth\SocialiteProvider;
-use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class  SocialiteController extends Controller
 {
@@ -27,7 +27,7 @@ class  SocialiteController extends Controller
      *
      * @return RedirectResponse
      */
-    public function callback(SocialiteProvider $provider): RedirectResponse
+    public function callback(SocialiteProvider $provider): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $userData = Socialite::driver($provider->value)->user();
 
@@ -36,11 +36,11 @@ class  SocialiteController extends Controller
             'login_provider' => $provider,
         ], [
             'avatar_url'           => $userData->getAvatar(),
-            'password'             => Hash::make($userData->refreshToken),
-            'name'                 => $userData->getName(),
+            'password'             => Hash::make($userData->refreshToken), // @phpstan-ignore-line
+            'name'                 => $userData->getNickname(),
             'email'                => $userData->getEmail(),
-            'github_token'         => $userData->token,
-            'github_refresh_token' => $userData->refreshToken,
+            'github_token'         => $userData->token, // @phpstan-ignore-line
+            'github_refresh_token' => $userData->refreshToken, // @phpstan-ignore-line
         ]);
 
         Auth::login($user);

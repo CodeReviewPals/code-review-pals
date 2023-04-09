@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\API\ThirdPartyRepositoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,21 +21,22 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+        'canLogin'       => Route::has('login') && !Auth::check(),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion'     => PHP_VERSION,
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::group([
+    'middleware' => ['auth'],
+], static function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('repositories', RepositoryController::class)
+        ->only(['index', 'store']);
+
+    Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)
+        ->name('third-party-repositories.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
