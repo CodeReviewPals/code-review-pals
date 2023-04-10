@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\PullRequestController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\API\ThirdPartyRepositoriesController;
 
@@ -34,6 +35,9 @@ Route::group([
 
     Route::resource('repositories', RepositoryController::class)
         ->only(['index', 'store']);
+
+    Route::resource('pull-requests', PullRequestController::class)
+        ->only(['index', 'create', 'store']);
 
     Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)
         ->name('third-party-repositories.index');
