@@ -13,6 +13,6 @@ trait GithubAction
 
     public function __construct()
     {
-        $this->connector = new GithubApiConnector;
+        $this->connector = new GithubApiConnector();
     }
 }

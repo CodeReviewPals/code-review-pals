@@ -23,10 +23,7 @@ class StorePullRequestRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => [
-                'required',
-                new PullRequestLink,
-            ],
+            'link' => ['required', new PullRequestLink()],
         ];
     }
 }

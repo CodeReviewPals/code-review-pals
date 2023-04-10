@@ -20,7 +20,11 @@ return new class extends Migration {
             /** @see \App\Enums\PullRequest\Status */
             $table->string('status');
             $table->string('description')->nullable();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table
+                ->foreignIdFor(User::class)
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });

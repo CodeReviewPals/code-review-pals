@@ -18,16 +18,12 @@ class FetchPullRequestInformation
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
      */
-    public function execute(
-        string     $username,
-        string     $repository,
-        int|string $pullRequestNumber,
-    ): Response
+    public function execute(string $username, string $repository, int|string $pullRequestNumber): Response
     {
         $request = new GetPullRequestInformation(
             username: $username,
             repository: $repository,
-            pullRequestNumber: $pullRequestNumber,
+            pullRequestNumber: $pullRequestNumber
         );
 
         return $this->connector->send($request);

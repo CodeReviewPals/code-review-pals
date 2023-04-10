@@ -15,7 +15,7 @@ class GenerateRepositoryName
     public function execute(PullRequest $pullRequest): bool
     {
         [
-            'username'   => $username,
+            'username' => $username,
             'repository' => $repository,
         ] = app(PullRequestService::class)->getRegexMatch($pullRequest->html_url);
 

@@ -20,9 +20,7 @@ class FetchUserRepositories
      */
     public function execute(string $username): Response
     {
-        $request = new GetUserRepositories(
-            username: $username,
-        );
+        $request = new GetUserRepositories(username: $username);
 
         return $this->connector->send($request);
     }
