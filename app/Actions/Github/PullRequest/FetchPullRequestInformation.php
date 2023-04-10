@@ -19,9 +19,9 @@ class FetchPullRequestInformation
      * @throws PendingRequestException
      */
     public function execute(
-        string $username,
-        string $repository,
-        int    $pullRequestNumber,
+        string     $username,
+        string     $repository,
+        int|string $pullRequestNumber,
     ): Response
     {
         $request = new GetPullRequestInformation(

@@ -3,7 +3,6 @@
 namespace App\Http\Requests\PullRequest;
 
 use App\Rules\Github\PullRequestLink;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePullRequestRequest extends FormRequest
@@ -19,7 +18,7 @@ class StorePullRequestRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, Rule|array|string>
+     * @return array<string, array<int, mixed>>
      */
     public function rules(): array
     {

@@ -25,14 +25,14 @@ class PullRequest extends Model
     ];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'status' => Status::class,
     ];
 
     /**
-     * @return BelongsTo
+     * @return BelongsTo<User, PullRequest>
      */
     public function user(): BelongsTo
     {

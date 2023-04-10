@@ -7,6 +7,7 @@ use App\Models\PullRequest;
 use App\DTO\Github\Repository\PullRequest\PullRequestData;
 use App\Http\Requests\PullRequest\StorePullRequestRequest;
 use App\Actions\Github\PullRequest\FetchPullRequestInformation;
+use function PHPStan\Testing\assertType;
 
 class PullRequestService
 {
@@ -19,15 +20,15 @@ class PullRequestService
      */
     public function create(StorePullRequestRequest $request): ?PullRequest
     {
-        $pullRequestData = $this->getDataFromUrl(url: $request->get('link'));
+        $pullRequestData = $this->getDataFromUrl(url: (string)$request->get('link'));
 
-        if (!$pullRequestData) {
+        if (!$pullRequestData instanceof PullRequestData) {
             return null;
         }
 
         return $request
             ->user()
-            ->pullRequests()
+            ?->pullRequests()
             ->updateOrCreate([
                 'node_id' => $pullRequestData->nodeId,
             ], $pullRequestData->toArray());
@@ -38,9 +39,9 @@ class PullRequestService
      *
      * @param string $url
      *
-     * @return PullRequestData|null
+     * @return mixed
      */
-    public function getDataFromUrl(string $url): ?PullRequestData
+    public function getDataFromUrl(string $url): mixed
     {
         [
             'username'          => $username,
@@ -64,12 +65,12 @@ class PullRequestService
      *
      * @param string $url
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getRegexMatch(string $url): array
     {
         preg_match(
-            pattern: config('regex.github.pull_request.url'),
+            pattern: (string)config('regex.github.pull_request.url'),
             subject: $url,
             matches: $extraction,
         );

@@ -17,9 +17,13 @@ class PullRequestLink implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if (!is_string($value)) {
+            $fail('The :attribute must be a string');
+        }
+
         if (!preg_match(
-            pattern: config('regex.github.pull_request.url'),
-            subject: $value,
+            pattern: (string)config('regex.github.pull_request.url'),
+            subject: (string)$value,
         )) {
             $fail('The :attribute must be a correct pull request link.');
         }
