@@ -1,4 +1,4 @@
-name: Laravel
+name: deploy
 
 on:
     push:
@@ -24,7 +24,7 @@ jobs:
                       git reset --hard
                       GNUTLS_CPUID_OVERRIDE=0x1 git pull
                       GNUTLS_CPUID_OVERRIDE=0x1 composer install --optimize-autoloader --no-dev
-                      GNUTLS_CPUID_OVERRIDE=0x1 npm install --production --loglevel warn
+                      GNUTLS_CPUID_OVERRIDE=0x1 npm install --loglevel warn
                       php artisan migrate --force
                       npm run build
                       php artisan config:cache
