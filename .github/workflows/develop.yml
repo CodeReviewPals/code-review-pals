@@ -1,0 +1,26 @@
+name: develop
+
+on:
+    push:
+        branches: [develop]
+
+jobs:
+    prettier:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                  # Make sure the actual branch is checked out when running on pull requests
+                  ref: ${{ github.head_ref }}
+                  # This is important to fetch the changes to the previous commit
+                  fetch-depth: 0
+
+            - name: Prettier Action
+              uses: creyD/prettier_action@v4.3
+              with:
+                  # This part is also where you can pass other options, for example:
+                  only_changed: True
+                  prettier_plugins: '@prettier/plugin-php'
+                  prettier_options: --write ./app ./tests ./routes ./database
