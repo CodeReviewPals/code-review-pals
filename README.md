@@ -1,6 +1,13 @@
-<p align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/geeksesi/code-review-pals/master/resources/images/logo.svg" />
-</p>
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/geeksesi/code-review-pals/master/resources/images/logo-white-350.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/geeksesi/code-review-pals/master/resources/images/logo-350.png">
+  <img style="filter:invert(100%);" alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://raw.githubusercontent.com/geeksesi/code-review-pals/master/resources/images/logo.svg">
+</picture>
+    <br/><br/>
+  <a href="https://discord.gg/3G8cvWr7q4" ><img width="30%" src="https://user-images.githubusercontent.com/28778964/230801380-b8fb2ed3-fbcd-42ac-8e03-e45eb7c06e5e.png" /></a>
+</div>
+
 
 # Code Review Pals
 Code Review Pals is a community-driven platform for code review, designed to help developers learn from each other and improve their skills by providing a place to share their code and get feedback from peers.
