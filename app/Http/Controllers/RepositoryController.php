@@ -30,9 +30,7 @@ class RepositoryController extends Controller
      */
     public function store(StoreRepositoryRequest $request): RedirectResponse
     {
-        if (!$request->user()) {
-            exit;
-        }
+        abort_unless($request->user(), 401);
 
         $data = RepositoryData::from($request->validated());
 
