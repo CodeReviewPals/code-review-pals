@@ -4,6 +4,7 @@ namespace App\Services\Github;
 
 use Exception;
 use App\Models\PullRequest;
+use App\Enums\Github\Repository\PullRequest\State;
 use App\DTO\Github\Repository\PullRequest\PullRequestData;
 use App\Http\Requests\PullRequest\StorePullRequestRequest;
 use App\Actions\Github\PullRequest\FetchPullRequestInformation;
@@ -23,6 +24,10 @@ class PullRequestService
         $pullRequestData = $this->getDataFromUrl(url: (string) $request->get('link'));
 
         if (!$pullRequestData instanceof PullRequestData) {
+            return null;
+        }
+
+        if ($pullRequestData->state === State::CLOSED) {
             return null;
         }
 
