@@ -8,6 +8,7 @@ import AddRepositoryModal from "./AddRepositoryModal";
 
 export default function RepositoryIndex({auth, repositories}) {
     const [thirdPartyModal, setThirdPartyModal] = useState({active: false, provider: null});
+    const [thirdPartyRepositories, setThirdPartyRepositories] = useState([]);
 
     const closeThirdPartyModal = () => {
         setThirdPartyModal({active: false});
@@ -89,6 +90,8 @@ export default function RepositoryIndex({auth, repositories}) {
                         auth={auth}
                         provider={thirdPartyModal.provider}
                         closeThirdPartyModal={closeThirdPartyModal}
+                        repositories={thirdPartyRepositories}
+                        setRepositories={setThirdPartyRepositories}
                     />
                 </DashboardModal>
             )}
