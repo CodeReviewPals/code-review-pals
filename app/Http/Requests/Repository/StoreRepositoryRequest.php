@@ -25,11 +25,8 @@ class StoreRepositoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nodeId'      => [
-                'required',
-                'string',
-            ],
-            'fullName'    => [
+            'nodeId' => ['required', 'string'],
+            'fullName' => [
                 'required',
                 'string',
                 Rule::unique(Repository::class, 'full_name')->where(function (Builder $query) {
@@ -37,8 +34,8 @@ class StoreRepositoryRequest extends FormRequest
                 }),
             ],
             'description' => ['nullable', 'string'],
-            'language'    => ['nullable', 'string'],
-            'htmlUrl'     => ['required', 'string'],
+            'language' => ['nullable', 'string'],
+            'htmlUrl' => ['required', 'string'],
         ];
     }
 }

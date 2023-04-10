@@ -21,8 +21,8 @@ class PullRequestService
     public function getDataFromUrl(string $url): mixed
     {
         [
-            'username'          => $username,
-            'repository'        => $repository,
+            'username' => $username,
+            'repository' => $repository,
             'pullRequestNumber' => $pullRequestNumber,
         ] = $this->getRegexMatch($url);
 
@@ -44,11 +44,11 @@ class PullRequestService
      */
     public function getRegexMatch(string $url): array
     {
-        preg_match(pattern: (string)config('regex.github.pull_request.url'), subject: $url, matches: $extraction);
+        preg_match(pattern: (string) config('regex.github.pull_request.url'), subject: $url, matches: $extraction);
 
         return [
-            'username'          => $extraction[1],
-            'repository'        => $extraction[2],
+            'username' => $extraction[1],
+            'repository' => $extraction[2],
             'pullRequestNumber' => $extraction[3],
         ];
     }
@@ -61,18 +61,15 @@ class PullRequestService
     public function createFromUrl(StorePullRequestRequest $request): ?PullRequest
     {
         if (!$request->user()) {
-            exit;
+            exit();
         }
 
-        $pullRequestData = $this->getDataFromUrl(url: (string)$request->get('link'));
+        $pullRequestData = $this->getDataFromUrl(url: (string) $request->get('link'));
 
         if (!$pullRequestData instanceof PullRequestData) {
-            exit;
+            exit();
         }
 
-        return app(CreatePullRequest::class)->execute(
-            pullRequestData: $pullRequestData,
-            user: $request->user(),
-        );
+        return app(CreatePullRequest::class)->execute(pullRequestData: $pullRequestData, user: $request->user());
     }
 }

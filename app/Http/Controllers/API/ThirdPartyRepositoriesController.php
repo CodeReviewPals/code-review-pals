@@ -25,9 +25,7 @@ class ThirdPartyRepositoriesController extends Controller
 
             /** @var DataCollection<int, RepositoryData> $repositories */
             $repositories = app(FetchUserRepositories::class)
-                ->execute(
-                    username: (string)$request->get('username'),
-                )
+                ->execute(username: (string) $request->get('username'))
                 ->dtoOrFail();
 
             // Remove already existing repositories.

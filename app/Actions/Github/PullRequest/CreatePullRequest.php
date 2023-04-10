@@ -17,10 +17,7 @@ class CreatePullRequest
      *
      * @return PullRequest|null
      */
-    public function execute(
-        PullRequestData $pullRequestData,
-        User            $user,
-    ): ?PullRequest
+    public function execute(PullRequestData $pullRequestData, User $user): ?PullRequest
     {
         if ($pullRequestData->state === State::CLOSED) {
             return null;
@@ -28,9 +25,6 @@ class CreatePullRequest
 
         return $user
             ->pullRequests()
-            ->updateOrCreate(
-                ['node_id' => $pullRequestData->nodeId],
-                $pullRequestData->toArray()
-            );
+            ->updateOrCreate(['node_id' => $pullRequestData->nodeId], $pullRequestData->toArray());
     }
 }

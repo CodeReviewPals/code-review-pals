@@ -17,9 +17,9 @@ class FetchAllPullRequest implements ShouldQueue
     /**
      * @param Collection<int, Repository>|null $repositories
      */
-    public function __construct(
-        public ?Collection $repositories = null,
-    ) {}
+    public function __construct(public ?Collection $repositories = null)
+    {
+    }
 
     /**
      * Execute the job.
@@ -27,8 +27,7 @@ class FetchAllPullRequest implements ShouldQueue
     public function handle(): void
     {
         if (!is_null($this->repositories)) {
-            $this->repositories
-                ->each(fn($repository) => FetchAllPullRequestFromRepository::dispatch($repository));
+            $this->repositories->each(fn($repository) => FetchAllPullRequestFromRepository::dispatch($repository));
         } else {
             Repository::query()
                 ->forJob()

@@ -22,15 +22,9 @@ class GetAllPullRequest
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
      */
-    public function execute(
-        string $username,
-        string $repository,
-    ): Response
+    public function execute(string $username, string $repository): Response
     {
-        $request = new GetAllPullRequestFromRepository(
-            username: $username,
-            repository: $repository,
-        );
+        $request = new GetAllPullRequestFromRepository(username: $username, repository: $repository);
 
         return $this->connector->send($request);
     }

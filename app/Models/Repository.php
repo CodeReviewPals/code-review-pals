@@ -16,22 +16,12 @@ class Repository extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [
-        'node_id',
-        'user_id',
-        'full_name',
-        'description',
-        'language',
-        'html_url',
-    ];
+    protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
 
     /**
      * @var string[]
      */
-    protected $appends = [
-        'username',
-        'repository',
-    ];
+    protected $appends = ['username', 'repository'];
 
     /**
      * @return BelongsTo<User, Repository>
@@ -46,9 +36,7 @@ class Repository extends Model
      */
     public function username(): Attribute
     {
-        return Attribute::make(
-            get: fn() => explode('/', $this->full_name)[0],
-        );
+        return Attribute::make(get: fn() => explode('/', $this->full_name)[0]);
     }
 
     /**
@@ -56,9 +44,7 @@ class Repository extends Model
      */
     public function repository(): Attribute
     {
-        return Attribute::make(
-            get: fn() => explode('/', $this->full_name)[1],
-        );
+        return Attribute::make(get: fn() => explode('/', $this->full_name)[1]);
     }
 
     /**

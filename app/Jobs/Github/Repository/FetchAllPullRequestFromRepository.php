@@ -21,9 +21,9 @@ class FetchAllPullRequestFromRepository implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(
-        protected Repository $repository,
-    ) {}
+    public function __construct(protected Repository $repository)
+    {
+    }
 
     /**
      * Execute the job.
@@ -33,14 +33,11 @@ class FetchAllPullRequestFromRepository implements ShouldQueue
         try {
             /** @var DataCollection<int, PullRequestData> $pullRequests */
             $pullRequests = app(GetAllPullRequest::class)
-                ->execute(
-                    username: $this->repository->username,
-                    repository: $this->repository->repository,
-                )
+                ->execute(username: $this->repository->username, repository: $this->repository->repository)
                 ->dtoOrFail();
 
             if (!$pullRequests instanceof DataCollection) {
-                exit;
+                exit();
             }
 
             $pullRequests->each(function (PullRequestData $pullRequestData) {
@@ -50,7 +47,7 @@ class FetchAllPullRequestFromRepository implements ShouldQueue
                 );
             });
         } catch (Exception) {
-            exit;
+            exit();
         }
     }
 }
