@@ -52,7 +52,7 @@ export default function Authenticated({ user, header, children }) {
                                             >
                                                 <img
                                                     className="h-8 w-8 mr-2 rounded-full object-cover"
-                                                    src={user.avatar}
+                                                    src={user.avatar_url}
                                                     alt={user.name}
                                                 />
 

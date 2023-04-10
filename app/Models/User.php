@@ -4,10 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
-use App\Services\Avatar\UiAvatar;
 use App\Enums\Auth\SocialiteProvider;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,12 +35,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = ['avatar_url', 'github_token', 'github_refresh_token', 'password', 'remember_token'];
-
-    /**
-     * @var string[]
-     */
-    protected $appends = ['avatar', 'is_auth_user'];
+    protected $hidden = [
+        'github_token',
+        'github_refresh_token',
+        'password',
+        'remember_token',
+    ];
 
     /**
      * The attributes that should be cast.
@@ -51,26 +49,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'login_provider' => SocialiteProvider::class,
+        'login_provider'    => SocialiteProvider::class,
     ];
-
-    /**
-     * Implement logic with file upload or remote avatar.
-     *
-     * @return Attribute<string, never>
-     */
-    public function avatar(): Attribute
-    {
-        return Attribute::make(get: fn() => $this->avatar_url ?? (new UiAvatar($this->name))->make());
-    }
-
-    /**
-     * @return Attribute<bool, never>
-     */
-    public function isAuthUser(): Attribute
-    {
-        return Attribute::make(get: fn() => !$this->login_provider instanceof SocialiteProvider);
-    }
 
     /**
      * @return HasMany<PullRequest>
