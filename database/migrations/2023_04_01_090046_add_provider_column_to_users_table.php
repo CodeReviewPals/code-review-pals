@@ -12,7 +12,10 @@ return new class extends Migration {
     {
         Schema::table('users', static function (Blueprint $table) {
             /** @see \App\Enums\Auth\SocialiteProvider */
-            $table->string('login_provider')->nullable()->after('password');
+            $table
+                ->string('login_provider')
+                ->nullable()
+                ->after('password');
         });
     }
 

@@ -37,21 +37,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'avatar_url',
-        'github_token',
-        'github_refresh_token',
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['avatar_url', 'github_token', 'github_refresh_token', 'password', 'remember_token'];
 
     /**
      * @var string[]
      */
-    protected $appends = [
-        'avatar',
-        'is_auth_user',
-    ];
+    protected $appends = ['avatar', 'is_auth_user'];
 
     /**
      * The attributes that should be cast.
@@ -60,7 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'login_provider'    => SocialiteProvider::class,
+        'login_provider' => SocialiteProvider::class,
     ];
 
     /**
@@ -70,9 +61,7 @@ class User extends Authenticatable
      */
     public function avatar(): Attribute
     {
-        return Attribute::make(
-            get: fn() => $this->avatar_url ?? (new UiAvatar($this->name))->make(),
-        );
+        return Attribute::make(get: fn() => $this->avatar_url ?? (new UiAvatar($this->name))->make());
     }
 
     /**
@@ -80,9 +69,7 @@ class User extends Authenticatable
      */
     public function isAuthUser(): Attribute
     {
-        return Attribute::make(
-            get: fn() => !$this->login_provider instanceof SocialiteProvider,
-        );
+        return Attribute::make(get: fn() => !$this->login_provider instanceof SocialiteProvider);
     }
 
     /**

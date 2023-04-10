@@ -25,14 +25,8 @@ class ThirdPartyRepositioriesListRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => [
-                'string',
-                'required',
-            ],
-            'provider' => [
-                'required',
-                new Enum(SocialiteProvider::class),
-            ],
+            'username' => ['string', 'required'],
+            'provider' => ['required', new Enum(SocialiteProvider::class)],
         ];
     }
 }

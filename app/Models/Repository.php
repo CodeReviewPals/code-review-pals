@@ -10,14 +10,7 @@ class Repository extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [
-        'node_id',
-        'user_id',
-        'full_name',
-        'description',
-        'language',
-        'html_url',
-    ];
+    protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
 
     /**
      * @return BelongsTo<User>

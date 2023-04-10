@@ -13,8 +13,7 @@ use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
  */
 class GithubApiConnector extends Connector
 {
-    use AcceptsJson,
-        AlwaysThrowOnErrors;
+    use AcceptsJson, AlwaysThrowOnErrors;
 
     /**
      * The Base URL of the API
@@ -23,7 +22,7 @@ class GithubApiConnector extends Connector
      */
     public function resolveBaseUrl(): string
     {
-        return (string)config('github.api.base_path');
+        return (string) config('github.api.base_path');
     }
 
     /**
@@ -43,7 +42,7 @@ class GithubApiConnector extends Connector
     {
         return new BasicAuthenticator(
             username: config('services.github.client_id'),
-            password: config('services.github.client_secret'),
+            password: config('services.github.client_secret')
         );
     }
 }

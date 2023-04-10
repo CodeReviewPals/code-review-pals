@@ -16,15 +16,11 @@ class FetchUserRepositories
      * @throws ReflectionException
      * @throws PendingRequestException
      */
-    public function execute(
-        string $username,
-    ): Response
+    public function execute(string $username): Response
     {
-        $connector = new GithubApiConnector;
+        $connector = new GithubApiConnector();
 
-        $request = new GetUserRepositories(
-            username: $username,
-        );
+        $request = new GetUserRepositories(username: $username);
 
         return $connector->send($request);
     }

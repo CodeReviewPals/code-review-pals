@@ -21,22 +21,25 @@ use App\Http\Controllers\API\ThirdPartyRepositoriesController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin'       => Route::has('login') && !Auth::check(),
+        'canLogin' => Route::has('login') && !Auth::check(),
         'laravelVersion' => Application::VERSION,
-        'phpVersion'     => PHP_VERSION,
+        'phpVersion' => PHP_VERSION,
     ]);
 });
 
-Route::group([
-    'middleware' => ['auth'],
-], static function () {
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::group(
+    [
+        'middleware' => ['auth'],
+    ],
+    static function () {
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::resource('repositories', RepositoryController::class)
-        ->only(['index', 'store']);
+        Route::resource('repositories', RepositoryController::class)->only(['index', 'store']);
 
-    Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)
-        ->name('third-party-repositories.index');
-});
+        Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)->name(
+            'third-party-repositories.index'
+        );
+    }
+);
 
 require __DIR__ . '/auth.php';

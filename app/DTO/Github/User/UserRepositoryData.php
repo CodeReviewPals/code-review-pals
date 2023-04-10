@@ -14,29 +14,26 @@ use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 class UserRepositoryData extends Data
 {
     public function __construct(
-        public int             $id,
-        public string          $nodeId,
-        public string          $name,
-        public string          $fullName,
-        public bool            $private,
-        public string          $htmlUrl,
-        public ?string         $description,
-        public OwnerData       $owner,
-        #[MapInputName('fork')]
-        public bool            $isFork,
-        public string          $url,
-        #[WithTransformer(DateTimeInterfaceTransformer::class)]
-        public CarbonImmutable $createdAt,
-        #[WithTransformer(DateTimeInterfaceTransformer::class)]
-        public CarbonImmutable $updatedAt,
-        #[WithTransformer(DateTimeInterfaceTransformer::class)]
-        public CarbonImmutable $pushedAt,
-        public int             $size,
-        public int             $stargazersCount,
-        public int             $watchersCount,
-        public int             $forksCount,
-        public ?string         $language,
-        public string          $defaultBranch,
-        public bool            $isTemplate,
-    ) {}
+        public int $id,
+        public string $nodeId,
+        public string $name,
+        public string $fullName,
+        public bool $private,
+        public string $htmlUrl,
+        public ?string $description,
+        public OwnerData $owner,
+        #[MapInputName('fork')] public bool $isFork,
+        public string $url,
+        #[WithTransformer(DateTimeInterfaceTransformer::class)] public CarbonImmutable $createdAt,
+        #[WithTransformer(DateTimeInterfaceTransformer::class)] public CarbonImmutable $updatedAt,
+        #[WithTransformer(DateTimeInterfaceTransformer::class)] public CarbonImmutable $pushedAt,
+        public int $size,
+        public int $stargazersCount,
+        public int $watchersCount,
+        public int $forksCount,
+        public ?string $language,
+        public string $defaultBranch,
+        public bool $isTemplate
+    ) {
+    }
 }

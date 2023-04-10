@@ -20,10 +20,9 @@ class GetAllPullRequest extends Request
      */
     protected Method $method = Method::GET;
 
-    public function __construct(
-        public string $username,
-        public string $repository,
-    ) {}
+    public function __construct(public string $username, public string $repository)
+    {
+    }
 
     /**
      * Define the endpoint for the request

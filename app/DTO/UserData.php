@@ -12,11 +12,12 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class UserData extends Data
 {
     public function __construct(
-        public string             $name,
-        public string             $email,
-        public ?string            $avatar,
-        public ?string            $githubId,
-        public ?Carbon            $emailVerifiedAt,
-        public ?SocialiteProvider $loginProvider,
-    ) {}
+        public string $name,
+        public string $email,
+        public ?string $avatar,
+        public ?string $githubId,
+        public ?Carbon $emailVerifiedAt,
+        public ?SocialiteProvider $loginProvider
+    ) {
+    }
 }

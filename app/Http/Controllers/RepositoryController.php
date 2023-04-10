@@ -32,11 +32,10 @@ class RepositoryController extends Controller
     {
         $data = RepositoryData::from($request->validated());
 
-        $request->user()
+        $request
+            ->user()
             ->repositories()
-            ->create(
-                $data->toArray()
-            );
+            ->create($data->toArray());
 
         return to_route('repositories.index');
     }
