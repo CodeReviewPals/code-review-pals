@@ -3,8 +3,7 @@ import GithubLogo from "../../../images/dashboard/github.svg";
 import {useForm} from "@inertiajs/react";
 import SecondaryButton from "@/Components/SecondaryButton";
 
-export default function AddRepositoryModal({auth, provider, closeThirdPartyModal}) {
-    const [repositories, setRepositories] = useState([]);
+export default function AddRepositoryModal({auth, provider, closeThirdPartyModal, repositories, setRepositories}) {
 
     const {data, setData, post} = useForm({
         nodeId: "",
@@ -27,6 +26,9 @@ export default function AddRepositoryModal({auth, provider, closeThirdPartyModal
     };
 
     useEffect(() => {
+        if(repositories.length > 0){
+            return;
+        }
         (async () => await dataFetch())();
     }, []);
 
