@@ -16,9 +16,9 @@ class GetUserInformation extends Request
      */
     protected Method $method = Method::GET;
 
-    public function __construct(
-        protected string $username,
-    ) {}
+    public function __construct(protected string $username)
+    {
+    }
 
     /**
      * Define the endpoint for the request

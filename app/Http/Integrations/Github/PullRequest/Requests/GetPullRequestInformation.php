@@ -19,11 +19,9 @@ class GetPullRequestInformation extends Request
      */
     protected Method $method = Method::GET;
 
-    public function __construct(
-        public string $username,
-        public string $repository,
-        public int    $pullRequestNumber,
-    ) {}
+    public function __construct(public string $username, public string $repository, public int $pullRequestNumber)
+    {
+    }
 
     /**
      * Define the endpoint for the request

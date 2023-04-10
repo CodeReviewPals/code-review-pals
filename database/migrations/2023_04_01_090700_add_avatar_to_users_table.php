@@ -11,7 +11,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', static function (Blueprint $table) {
-            $table->string('avatar_url')->nullable()->after('email');
+            $table
+                ->string('avatar_url')
+                ->nullable()
+                ->after('email');
         });
     }
 

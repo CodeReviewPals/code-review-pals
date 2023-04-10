@@ -20,9 +20,9 @@ class GetUserRepositories extends Request
     /**
      * @param string $username
      */
-    public function __construct(
-        protected string $username,
-    ) {}
+    public function __construct(protected string $username)
+    {
+    }
 
     /**
      * Define the endpoint for the request

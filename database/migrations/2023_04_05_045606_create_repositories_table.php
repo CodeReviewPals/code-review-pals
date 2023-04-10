@@ -14,7 +14,11 @@ return new class extends Migration {
         Schema::create('repositories', static function (Blueprint $table) {
             $table->id();
             $table->string('node_id');
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table
+                ->foreignIdFor(User::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('full_name');
             $table->string('description')->nullable();
             $table->string('language')->nullable();

@@ -12,10 +12,11 @@ use Spatie\LaravelData\Attributes\MapOutputName;
 class RepositoryData extends Data
 {
     public function __construct(
-        public string  $nodeId,
-        public string  $fullName,
+        public string $nodeId,
+        public string $fullName,
         public ?string $description,
         public ?string $language,
-        public string  $htmlUrl,
-    ) {}
+        public string $htmlUrl
+    ) {
+    }
 }

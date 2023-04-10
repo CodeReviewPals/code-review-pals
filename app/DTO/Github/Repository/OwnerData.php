@@ -10,11 +10,11 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class OwnerData extends Data
 {
     public function __construct(
-        #[MapInputName('login')]
-        public string $userName,
-        public int    $id,
+        #[MapInputName('login')] public string $userName,
+        public int $id,
         public string $nodeId,
         public string $avatarUrl,
-        public string $gravatarId,
-    ) {}
+        public string $gravatarId
+    ) {
+    }
 }
