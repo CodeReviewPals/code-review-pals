@@ -26,6 +26,13 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
 
                                 <NavLink
+                                    href={route('pull-requests.index')}
+                                    active={route().current('pull-requests.index')}
+                                >
+                                    Pull Request
+                                </NavLink>
+
+                                <NavLink
                                     href={route('repositories.index')}
                                     active={route().current('repositories.index')}
                                 >
@@ -106,6 +113,20 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard.index')}>
                             Dashboard
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route('pull-requests.index')}
+                            active={route().current('pull-requests.index')}
+                        >
+                            Pull Request
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route('repositories.index')}
+                            active={route().current('repositories.index')}
+                        >
+                            Repository
                         </ResponsiveNavLink>
                     </div>
 

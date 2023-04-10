@@ -41,8 +41,8 @@ class GithubApiConnector extends Connector
     protected function defaultAuth(): ?Authenticator
     {
         return new BasicAuthenticator(
-            username: config('services.github.client_id'),
-            password: config('services.github.client_secret')
+            username: (string)config('services.github.client_id'),
+            password: (string)config('services.github.client_secret'),
         );
     }
 }

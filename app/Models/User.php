@@ -73,6 +73,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return HasMany<PullRequest>
+     */
+    public function pullRequests(): HasMany
+    {
+        return $this->hasMany(PullRequest::class);
+    }
+
+    /**
      * @return HasMany<Repository>
      */
     public function repositories(): HasMany
