@@ -7,22 +7,26 @@ use Spatie\LaravelData\Data;
 use App\DTO\Github\Repository\OwnerData;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Attributes\WithTransformer;
 use App\Enums\Github\Repository\PullRequest\State;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 
 #[MapInputName(SnakeCaseMapper::class)]
+#[MapOutputName(SnakeCaseMapper::class)]
 class PullRequestData extends Data
 {
     public function __construct(
-        public string           $url,
+        public string           $htmlUrl,
         public int              $id,
         public string           $nodeId,
         public int              $number,
+        #[MapOutputName('status')]
         public State            $state,
         public bool             $locked,
         public string           $title,
         public OwnerData        $user,
+        #[MapOutputName('description')]
         public ?string          $body,
         #[WithTransformer(DateTimeInterfaceTransformer::class)]
         public CarbonImmutable  $createdAt,

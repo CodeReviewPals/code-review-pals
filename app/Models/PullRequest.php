@@ -6,19 +6,19 @@ use App\Enums\PullRequest\Status;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PullRequest extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     /**
      * @var string[]
      */
     protected $fillable = [
+        'node_id',
+        'repository',
         'title',
-        'url',
+        'html_url',
         'status',
         'description',
         'user_id',

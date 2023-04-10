@@ -13,11 +13,13 @@ return new class extends Migration {
     {
         Schema::create('pull_requests', static function (Blueprint $table) {
             $table->id();
+            $table->string('node_id')->unique();
+            $table->string('repository')->nullable();
             $table->string('title');
-            $table->string('url');
+            $table->string('html_url');
             /** @see \App\Enums\PullRequest\Status */
             $table->string('status');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();

@@ -71,7 +71,7 @@ class User extends Authenticatable
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->avatar_url ?? (new UiAvatar($this->name))->make(),
+            get: fn() => $this->avatar_url ?? (new UiAvatar($this->name))->make(),
         );
     }
 
@@ -81,7 +81,7 @@ class User extends Authenticatable
     public function isAuthUser(): Attribute
     {
         return Attribute::make(
-            get: fn () => !$this->login_provider instanceof SocialiteProvider,
+            get: fn() => !$this->login_provider instanceof SocialiteProvider,
         );
     }
 
@@ -92,7 +92,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(PullRequest::class);
     }
-
 
     /**
      * @return HasMany<Repository>
