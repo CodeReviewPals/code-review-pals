@@ -2,9 +2,7 @@ name: Prettier
 
 on:
     pull_request:
-        branches: [master]
-    push:
-        branches: [master]
+        branches: [master, develop]
 
 jobs:
     prettier:
@@ -25,5 +23,5 @@ jobs:
                   # This part is also where you can pass other options, for example:
                   only_changed: True
                   prettier_plugins: "@prettier/plugin-php"
-                  commit_message: style - prettier
+                  dry: True
                   prettier_options: --write ./app ./tests ./routes ./database
