@@ -20,13 +20,16 @@ class StoreRepositoryRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, Rule|array|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
         return [
-            'nodeId' => ['required', 'string'],
-            'fullName' => [
+            'nodeId'      => [
+                'required',
+                'string',
+            ],
+            'fullName'    => [
                 'required',
                 'string',
                 Rule::unique(Repository::class, 'full_name')->where(function (Builder $query) {
@@ -34,8 +37,8 @@ class StoreRepositoryRequest extends FormRequest
                 }),
             ],
             'description' => ['nullable', 'string'],
-            'language' => ['nullable', 'string'],
-            'htmlUrl' => ['required', 'string'],
+            'language'    => ['nullable', 'string'],
+            'htmlUrl'     => ['required', 'string'],
         ];
     }
 }
