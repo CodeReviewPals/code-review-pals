@@ -25,7 +25,7 @@ class FetchAllPullRequestCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle(): int
     {
         $repositories = null;
 
@@ -37,5 +37,7 @@ class FetchAllPullRequestCommand extends Command
         }
 
         FetchAllPullRequest::dispatch($repositories);
+
+        return self::SUCCESS;
     }
 }
