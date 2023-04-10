@@ -14,15 +14,7 @@ class PullRequest extends Model
     /**
      * @var string[]
      */
-    protected $fillable = [
-        'node_id',
-        'repository',
-        'title',
-        'html_url',
-        'status',
-        'description',
-        'user_id',
-    ];
+    protected $fillable = ['node_id', 'repository', 'title', 'html_url', 'status', 'description', 'user_id'];
 
     /**
      * @var array<string, string>
