@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import GithubLogo from "../../../images/dashboard/github.svg";
+import GithubLogo from "~/images/dashboard/github.svg";
 import {useForm} from "@inertiajs/react";
 import SecondaryButton from "@/Components/SecondaryButton";
 
