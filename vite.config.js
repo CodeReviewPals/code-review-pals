@@ -1,8 +1,10 @@
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
+const serverSSL = (process.env.VITE_HTTPS || true) == true;
 export default defineConfig({
+    server: { https: serverSSL },
     plugins: [
         laravel({
             input: 'resources/js/app.jsx',
