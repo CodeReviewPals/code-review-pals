@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Repository;
 use App\Models\PullRequest;
+use App\Observers\RepositoryObserver;
 use Illuminate\Auth\Events\Registered;
 use App\Observers\PullRequestObserver;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -25,5 +27,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         PullRequest::observe(PullRequestObserver::class);
+        Repository::observe(RepositoryObserver::class);
     }
 }
