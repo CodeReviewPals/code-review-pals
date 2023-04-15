@@ -23,7 +23,7 @@ class GithubApiConnector extends Connector
      */
     public function resolveBaseUrl(): string
     {
-        return (string)config('github.api.base_path');
+        return (string) config('github.api.base_path');
     }
 
     /**
@@ -46,8 +46,8 @@ class GithubApiConnector extends Connector
         }
 
         return new BasicAuthenticator(
-            username: (string)config('services.github.client_id'),
-            password: (string)config('services.github.client_secret')
+            username: (string) config('services.github.client_id'),
+            password: (string) config('services.github.client_secret')
         );
     }
 }
