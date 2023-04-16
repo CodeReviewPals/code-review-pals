@@ -11,7 +11,7 @@ use App\DTO\Github\Repository\PullRequest\PullRequestData;
 /**
  * @link https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#list-pull-requests Documentation
  */
-class GetAllPullRequest extends Request
+class GetAllPullRequestFromRepository extends Request
 {
     /**
      * Define the HTTP method
@@ -41,6 +41,6 @@ class GetAllPullRequest extends Request
      */
     public function createDtoFromResponse(Response $response): DataCollection
     {
-        return PullRequestData::collection($response->json());
+        return PullRequestData::collection($response->collect());
     }
 }

@@ -4,44 +4,13 @@ namespace App\Services\Github;
 
 use Exception;
 use App\Models\PullRequest;
-use App\Enums\Github\Repository\PullRequest\State;
-use App\DTO\Github\Repository\PullRequest\PullRequestData;
+use App\Actions\Github\PullRequest\CreatePullRequest;
 use App\Http\Requests\PullRequest\StorePullRequestRequest;
+use App\DTO\Github\Repository\PullRequest\PullRequestData;
 use App\Actions\Github\PullRequest\FetchPullRequestInformation;
-use function PHPStan\Testing\assertType;
 
 class PullRequestService
 {
-    /**
-     * Check if pull request exist and update the existing one or create a new one.
-     *
-     * @param StorePullRequestRequest $request
-     *
-     * @return PullRequest|null
-     */
-    public function create(StorePullRequestRequest $request): ?PullRequest
-    {
-        $pullRequestData = $this->getDataFromUrl(url: (string) $request->get('link'));
-
-        if (!$pullRequestData instanceof PullRequestData) {
-            return null;
-        }
-
-        if ($pullRequestData->state === State::CLOSED) {
-            return null;
-        }
-
-        return $request
-            ->user()
-            ?->pullRequests()
-            ->updateOrCreate(
-                [
-                    'node_id' => $pullRequestData->nodeId,
-                ],
-                $pullRequestData->toArray()
-            );
-    }
-
     /**
      * Get extracted vars and call request to get the DTO object.
      *
@@ -82,5 +51,25 @@ class PullRequestService
             'repository' => $extraction[2],
             'pullRequestNumber' => $extraction[3],
         ];
+    }
+
+    /**
+     * @param StorePullRequestRequest $request
+     *
+     * @return PullRequest|null
+     */
+    public function createFromUrl(StorePullRequestRequest $request): ?PullRequest
+    {
+        if (!$request->user()) {
+            exit();
+        }
+
+        $pullRequestData = $this->getDataFromUrl(url: (string) $request->get('link'));
+
+        if (!$pullRequestData instanceof PullRequestData) {
+            exit();
+        }
+
+        return app(CreatePullRequest::class)->execute(pullRequestData: $pullRequestData, user: $request->user());
     }
 }

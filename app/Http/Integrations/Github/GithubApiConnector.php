@@ -3,9 +3,10 @@
 namespace App\Http\Integrations\Github;
 
 use Saloon\Http\Connector;
-use Saloon\Contracts\Authenticator;
+use Illuminate\Support\Facades\Auth;
 use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\Http\Auth\BasicAuthenticator;
+use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 
 /**
@@ -36,10 +37,14 @@ class GithubApiConnector extends Connector
     }
 
     /**
-     * @return Authenticator|null
+     * @return TokenAuthenticator|BasicAuthenticator
      */
-    protected function defaultAuth(): ?Authenticator
+    protected function defaultAuth(): TokenAuthenticator|BasicAuthenticator
     {
+        if (Auth::check()) {
+            return new TokenAuthenticator(Auth::user()->github_token);
+        }
+
         return new BasicAuthenticator(
             username: (string) config('services.github.client_id'),
             password: (string) config('services.github.client_secret')

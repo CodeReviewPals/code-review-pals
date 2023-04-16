@@ -4,7 +4,6 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Validation\Rules\Enum;
 use App\Enums\Auth\SocialiteProvider;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ThirdPartyRepositioriesListRequest extends FormRequest
@@ -20,7 +19,7 @@ class ThirdPartyRepositioriesListRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, Rule|array|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
