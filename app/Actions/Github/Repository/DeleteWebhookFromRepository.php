@@ -20,11 +20,12 @@ class DeleteWebhookFromRepository
      * @throws ReflectionException
      * @throws PendingRequestException
      */
-    public function execute(Webhook $webhook): Response {
+    public function execute(Webhook $webhook): Response
+    {
         $request = new DeleteRepositoryWebhook(
             username: $webhook->webhookable->username,
             repository: $webhook->webhookable->repository,
-            hookId: $webhook->hook_id,
+            hookId: $webhook->hook_id
         );
 
         $request->withTokenAuth($webhook->webhookable->user->github_token);

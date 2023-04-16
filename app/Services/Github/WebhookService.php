@@ -10,9 +10,9 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class WebhookService
 {
-    public function __construct(
-        private readonly Request $request,
-    ) {}
+    public function __construct(private readonly Request $request)
+    {
+    }
 
     public function validateRequest(string $secret): void
     {
@@ -37,11 +37,6 @@ class WebhookService
 
     public function getHandler(WebhookData $webhookData): string
     {
-        return 'handle'
-            . Str::studly(
-                value: $this->request->header('X-GitHub-Event')
-                . '_'
-                . $webhookData->action,
-            );
+        return 'handle' . Str::studly(value: $this->request->header('X-GitHub-Event') . '_' . $webhookData->action);
     }
 }

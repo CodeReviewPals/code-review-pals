@@ -18,16 +18,16 @@ class RepositoryObserver
     {
         try {
             /** @var WebhookCreatedData $webhookData */
-            $webhookData = app(CreateWebhook::class)->execute($repository)->dtoOrFail();
+            $webhookData = app(CreateWebhook::class)
+                ->execute($repository)
+                ->dtoOrFail();
 
-            $repository
-                ->webhooks()
-                ->save(
-                    new Webhook([
-                        'title'   => $repository->full_name . ' hook',
-                        'hook_id' => $webhookData->id,
-                    ]),
-                );
+            $repository->webhooks()->save(
+                new Webhook([
+                    'title' => $repository->full_name . ' hook',
+                    'hook_id' => $webhookData->id,
+                ])
+            );
         } catch (Exception $e) {
             return;
         }

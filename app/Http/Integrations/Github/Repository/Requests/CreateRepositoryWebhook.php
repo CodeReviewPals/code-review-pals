@@ -23,11 +23,9 @@ class CreateRepositoryWebhook extends Request implements HasBody
      */
     protected Method $method = Method::POST;
 
-    public function __construct(
-        public string $username,
-        public string $repository,
-        private readonly string $secret,
-    ) {}
+    public function __construct(public string $username, public string $repository, private readonly string $secret)
+    {
+    }
 
     /**
      * Define the endpoint for the request
@@ -45,14 +43,12 @@ class CreateRepositoryWebhook extends Request implements HasBody
     protected function defaultBody(): array
     {
         return [
-            'name'   => 'web',
+            'name' => 'web',
             'active' => true,
-            'events' => [
-                '*',
-            ],
+            'events' => ['*'],
             'config' => [
-                'secret'       => $this->secret,
-                'url'          => route('webhooks.github.repository'),
+                'secret' => $this->secret,
+                'url' => route('webhooks.github.repository'),
                 'content_type' => 'json',
             ],
         ];

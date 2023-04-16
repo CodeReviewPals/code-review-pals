@@ -13,13 +13,9 @@ final class HandleGithubRepositoryWebhookController extends Controller
     {
         $webhookService = new WebhookService($request);
 
-        $webhookService->validateRequest(
-            secret: $request->input('repository.node_id'),
-        );
+        $webhookService->validateRequest(secret: $request->input('repository.node_id'));
 
-        $handler = $webhookService->getHandler(
-            webhookData: WebhookData::from($request->all()),
-        );
+        $handler = $webhookService->getHandler(webhookData: WebhookData::from($request->all()));
 
         if (method_exists($this, $handler)) {
             return $this->$handler($request);

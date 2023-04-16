@@ -14,9 +14,7 @@ use Spatie\LaravelData\Attributes\MapOutputName;
 #[MapOutputName(SnakeCaseMapper::class)]
 class WebhookData extends Data
 {
-    public function __construct(
-        public string $action,
-        public RepositoryData $repository,
-        public ?OwnerData $sender,
-    ) {}
+    public function __construct(public string $action, public RepositoryData $repository, public ?OwnerData $sender)
+    {
+    }
 }
