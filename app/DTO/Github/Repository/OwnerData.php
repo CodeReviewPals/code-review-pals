@@ -14,7 +14,7 @@ class OwnerData extends Data
         public int $id,
         public string $nodeId,
         public string $avatarUrl,
-        public string $gravatarId
+        public ?string $gravatarId
     ) {
     }
 }
