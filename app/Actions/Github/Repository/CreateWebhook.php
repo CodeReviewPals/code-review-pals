@@ -2,9 +2,7 @@
 
 namespace App\Actions\Github\Repository;
 
-use App\Models\Webhook;
 use ReflectionException;
-use App\Models\Repository;
 use Saloon\Contracts\Response;
 use App\Actions\Github\GithubAction;
 use Saloon\Exceptions\PendingRequestException;
@@ -20,12 +18,15 @@ class CreateWebhook
      * @throws ReflectionException
      * @throws PendingRequestException
      */
-    public function execute(Repository $repository): Response
-    {
+    public function execute(
+        string $username,
+        string $repository,
+        string $secret,
+    ): Response {
         $request = new CreateRepositoryWebhook(
-            username: $repository->username,
-            repository: $repository->repository,
-            secret: $repository->node_id
+            username: $username,
+            repository: $repository,
+            secret: $secret,
         );
 
         return $this->connector->send($request);

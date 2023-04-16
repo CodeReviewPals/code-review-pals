@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\Discord\ChannelType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -38,6 +41,25 @@ class Repository extends Model
     public function webhooks(): MorphMany
     {
         return $this->morphMany(Webhook::class, 'webhookable');
+    }
+
+    /**
+     * @return MorphMany<User, Channel>
+     */
+    public function channels(): MorphMany
+    {
+        return $this->morphMany(Channel::class, 'channelable');
+    }
+
+    /**
+     * @return MorphOne
+     */
+    public function threadChannel(): MorphOne
+    {
+        return $this->morphOne(Channel::class, 'channelable')
+            ->ofMany([], function (Builder $query) {
+                $query->whereType(ChannelType::FORUM);
+            });
     }
 
     /**

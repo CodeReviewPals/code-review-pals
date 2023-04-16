@@ -23,7 +23,7 @@ class GithubApiConnector extends Connector
      */
     public function resolveBaseUrl(): string
     {
-        return (string) config('github.api.base_path');
+        return (string) config('services.github.base_path');
     }
 
     /**
