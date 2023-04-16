@@ -7,9 +7,6 @@ use Saloon\Http\Request;
 use Saloon\Contracts\Response;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
-use Saloon\Contracts\Authenticator;
-use Illuminate\Support\Facades\Auth;
-use Saloon\Http\Auth\TokenAuthenticator;
 use App\DTO\Github\Repository\Webhook\WebhookCreatedData;
 
 /**

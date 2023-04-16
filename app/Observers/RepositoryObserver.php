@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Webhook;
 use App\Models\Repository;
 use App\Actions\Github\Repository\CreateWebhook;
+use App\Actions\Github\Repository\DeleteWebhookFromRepository;
 use App\DTO\Github\Repository\Webhook\WebhookCreatedData;
 
 class RepositoryObserver
@@ -33,10 +34,39 @@ class RepositoryObserver
     }
 
     /**
-     * Handle the Repository "force deleted" event.
+     * Handle the Repository "deleting” event to delete webhook before soft delete the repository.
+     *
+     * @param Repository $repository
+     *
+     * @return void
      */
-    public function forceDeleted(Repository $repository): void
+    public function deleting(Repository $repository): void
     {
-        // TODO: Delete webhook
+        $this->deleteWebhooks($repository);
+    }
+
+    /**
+     * Handle the Repository "force deleting" event to delete webhook before deleting the repository.
+     */
+    public function forceDeleting(Repository $repository): void
+    {
+        $this->deleteWebhooks($repository);
+    }
+
+    /**
+     * @param Repository $repository
+     *
+     * @return void
+     */
+    private function deleteWebhooks(Repository $repository): void
+    {
+        try {
+            foreach ($repository->webhooks as $webhook) {
+                app(DeleteWebhookFromRepository::class)->execute($webhook);
+            }
+        } catch (Exception $e) {
+            //TODO: Issue #60
+            return;
+        }
     }
 }
