@@ -21,9 +21,11 @@ export default function PullRequestIndex({auth, pullRequests}) {
                 </td>
                 {/* Action */}
                 <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
-                    <Link href={route('pull-requests.destroy', data.id)} method="delete" className="text-red-600 hover:text-red-900">
-                        Delete
-                    </Link>
+                    { auth.user.id === data.user_id &&
+                        <Link href={route('pull-requests.destroy', data.id)} method="delete" className="text-red-600 hover:text-red-900">
+                            Delete
+                        </Link>
+                    }
                 </td>
             </tr>
         );
