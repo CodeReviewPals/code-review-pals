@@ -80,7 +80,7 @@ export default function RepositoryIndex({auth, repositories}) {
                     routePrefix="dashboard.repository"
                     rowRender={rowRender}
                     suffixName="Repository"
-                    columnsTitle={["id", "Name", "Description", "Language", "actions"]}
+                    columnsTitle={["ID", "Name", "Description", "Language", "Actions"]}
                     customAddButton={addRepositoryFromThirdPartyButton}
                 />
             </div>
