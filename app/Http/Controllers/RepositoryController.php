@@ -32,10 +32,24 @@ class RepositoryController extends Controller
     {
         $data = RepositoryData::from($request->validated());
 
-        $request
-            ->user()
-            ->repositories()
-            ->create($data->toArray());
+        try {
+            $request
+                ->user()
+                ->repositories()
+                ->create($data->toArray());
+
+        } catch (\Illuminate\Database\QueryException $th) {
+            // Check if the node_id already exists, if so we restore the repository.
+            $repository = Repository::query()
+                ->where('node_id', $data->nodeId)
+                ->onlyTrashed()
+                ->first();
+
+            throw_if(!$repository, $th);
+
+            $repository->restore();
+            $repository->update($data->toArray());
+        }
 
         return to_route('repositories.index');
     }
