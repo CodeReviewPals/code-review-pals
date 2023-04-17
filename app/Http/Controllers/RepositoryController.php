@@ -49,6 +49,8 @@ class RepositoryController extends Controller
      */
     public function destroy(Repository $repository): RedirectResponse
     {
+        abort_if($repository->user_id !== auth()->id(), 403);
+
         $repository->delete();
 
         return to_route('repositories.index');

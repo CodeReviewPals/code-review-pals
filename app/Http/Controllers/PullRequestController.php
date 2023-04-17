@@ -56,6 +56,8 @@ class PullRequestController extends Controller
      */
     public function destroy(PullRequest $pullRequest): RedirectResponse
     {
+        abort_if($pullRequest->user_id !== auth()->id(), 403);
+
         $pullRequest->delete();
 
         return to_route('pull-requests.index');
