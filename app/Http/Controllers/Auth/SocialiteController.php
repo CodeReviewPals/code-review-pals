@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Enums\Auth\SocialiteProvider;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\AbstractProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SocialiteController extends Controller
@@ -19,7 +20,11 @@ class SocialiteController extends Controller
      */
     public function redirect(SocialiteProvider $provider): RedirectResponse
     {
-        return Socialite::driver($provider->value)->redirect();
+        $scopes = optional(config('services.' . $provider->value . '.scopes')) ?? [];
+
+        return Socialite::driver($provider->value)
+            ->scopes($scopes)
+            ->redirect();
     }
 
     /**
