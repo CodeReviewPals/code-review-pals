@@ -1,6 +1,6 @@
 import DashboardTable from "@/Components/Dashboard/Table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {Head} from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import GithubLogo from "../../../images/dashboard/github.svg";
 import {useState} from "react";
 import DashboardModal from "@/Components/Dashboard/Modal";
@@ -35,7 +35,11 @@ export default function RepositoryIndex({auth, repositories}) {
                     <p className="text-gray-500 dark:text-gray-400">{data.language}</p>
                 </td>
                 {/* Action */}
-                <td className="px-4 py-4 text-sm text-center whitespace-nowrap"></td>
+                <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
+                    <Link href={route('repositories.destroy', data.id)} method="delete" className="text-red-600 hover:text-red-900">
+                        Delete
+                    </Link>
+                </td>
             </tr>
         );
     };

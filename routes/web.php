@@ -35,7 +35,7 @@ Route::group(
     static function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-        Route::resource('repositories', RepositoryController::class)->only(['index', 'store']);
+        Route::resource('repositories', RepositoryController::class)->only(['index', 'store', 'destroy']);
 
         Route::resource('pull-requests', PullRequestController::class)->only(['index', 'create', 'store']);
 

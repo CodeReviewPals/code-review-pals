@@ -39,4 +39,18 @@ class RepositoryController extends Controller
 
         return to_route('repositories.index');
     }
+
+    /**
+     * Remove the specified resource.
+     *
+     * @param Repository $repository
+     *
+     * @return RedirectResponse
+     */
+    public function destroy(Repository $repository): RedirectResponse
+    {
+        $repository->delete();
+
+        return to_route('repositories.index');
+    }
 }
