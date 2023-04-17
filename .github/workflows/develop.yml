@@ -23,4 +23,4 @@ jobs:
                   # This part is also where you can pass other options, for example:
                   commit_message: 'style: prettier'
                   prettier_plugins: '@prettier/plugin-php'
-                  prettier_options: --write ./app ./tests ./routes ./database
+                  prettier_options: --write ./app ./tests ./routes ./database ./resources/js ./resources/css ./resources/js/views
