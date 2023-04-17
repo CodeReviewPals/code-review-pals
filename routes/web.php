@@ -37,7 +37,7 @@ Route::group(
 
         Route::resource('repositories', RepositoryController::class)->only(['index', 'store', 'destroy']);
 
-        Route::resource('pull-requests', PullRequestController::class)->only(['index', 'create', 'store']);
+        Route::resource('pull-requests', PullRequestController::class)->only(['index', 'create', 'store', 'destroy']);
 
         Route::get('third-party-repositories', ThirdPartyRepositoriesController::class)->name(
             'third-party-repositories.index'

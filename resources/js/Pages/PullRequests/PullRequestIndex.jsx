@@ -1,6 +1,6 @@
 import DashboardTable from "@/Components/Dashboard/Table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {Head} from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 
 export default function PullRequestIndex({auth, pullRequests}) {
     const rowRender = (data, index) => {
@@ -19,7 +19,12 @@ export default function PullRequestIndex({auth, pullRequests}) {
                         <p className="text-gray-500 dark:text-gray-400">{data.title}</p>
                     </a>
                 </td>
-                <td className="px-4 py-4 text-sm text-center whitespace-nowrap"></td>
+                {/* Action */}
+                <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
+                    <Link href={route('pull-requests.destroy', data.id)} method="delete" className="text-red-600 hover:text-red-900">
+                        Delete
+                    </Link>
+                </td>
             </tr>
         );
     };

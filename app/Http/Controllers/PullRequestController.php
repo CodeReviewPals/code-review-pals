@@ -46,4 +46,18 @@ class PullRequestController extends Controller
 
         return to_route('pull-requests.index');
     }
+
+    /**
+     * Remove the specified resource.
+     *
+     * @param PullRequest $pullRequest
+     *
+     * @return RedirectResponse
+     */
+    public function destroy(PullRequest $pullRequest): RedirectResponse
+    {
+        $pullRequest->delete();
+
+        return to_route('pull-requests.index');
+    }
 }
