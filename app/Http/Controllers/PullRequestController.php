@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\PullRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Services\Github\PullRequestService;
+use App\Resources\PullRequest\PullRequestCollection;
 use App\Http\Requests\PullRequest\StorePullRequestRequest;
 
 class PullRequestController extends Controller
 {
-    public function __construct(protected PullRequestService $service)
+    public function __construct(
+        protected PullRequestService $service,
+    )
     {
+        $this->authorizeResource(PullRequest::class);
     }
 
     /**
@@ -22,7 +24,7 @@ class PullRequestController extends Controller
      */
     public function index(): Response
     {
-        $pullRequests = PullRequest::paginate();
+        $pullRequests = new PullRequestCollection(PullRequest::paginate());
 
         return Inertia::render('PullRequests/PullRequestIndex', [
             'pullRequests' => $pullRequests,
@@ -56,8 +58,6 @@ class PullRequestController extends Controller
      */
     public function destroy(PullRequest $pullRequest): RedirectResponse
     {
-        $this->authorize('delete', $pullRequest);
-
         $pullRequest->delete();
 
         return to_route('pull-requests.index');

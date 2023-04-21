@@ -3,21 +3,20 @@
 namespace App\Models;
 
 use App\Enums\PullRequest\Status;
+use App\Concerns\Model\HasPermissions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class PullRequest extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        HasPermissions;
 
     /**
      * @var string[]
      */
     protected $fillable = ['node_id', 'repository', 'title', 'html_url', 'status', 'description', 'user_id'];
-
-    protected $appends = ['can_delete'];
 
     /**
      * @var array<string, string>
@@ -32,10 +31,5 @@ class PullRequest extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function canDelete(): Attribute
-    {
-        return Attribute::make(get: fn () => auth()->user()->can('delete', $this));
     }
 }

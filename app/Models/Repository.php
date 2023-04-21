@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\Model\HasPermissions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,14 +16,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 class Repository extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        HasPermissions;
 
     protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
 
     /**
      * @var string[]
      */
-    protected $appends = ['username', 'repository', 'can_delete'];
+    protected $appends = ['username', 'repository'];
 
     /**
      * @return BelongsTo<User, Repository>
@@ -45,7 +47,7 @@ class Repository extends Model
      */
     public function username(): Attribute
     {
-        return Attribute::make(get: fn () => explode('/', $this->full_name)[0]);
+        return Attribute::make(get: fn() => explode('/', $this->full_name)[0]);
     }
 
     /**
@@ -53,12 +55,7 @@ class Repository extends Model
      */
     public function repository(): Attribute
     {
-        return Attribute::make(get: fn () => explode('/', $this->full_name)[1]);
-    }
-
-    public function canDelete(): Attribute
-    {
-        return Attribute::make(get: fn () => auth()->user()->can('delete', $this));
+        return Attribute::make(get: fn() => explode('/', $this->full_name)[1]);
     }
 
     /**

@@ -36,7 +36,7 @@ export default function RepositoryIndex({ auth, repositories }) {
                 </td>
                 {/* Action */}
                 <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
-                    {data.can_delete && (
+                    {data.can.delete && (
                         <Link
                             href={route('repositories.destroy', data.id)}
                             method="delete"

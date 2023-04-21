@@ -7,16 +7,22 @@ use Inertia\Response;
 use App\Models\Repository;
 use App\DTO\RepositoryData;
 use Illuminate\Http\RedirectResponse;
+use App\Resources\Repository\RepositoryCollection;
 use App\Http\Requests\Repository\StoreRepositoryRequest;
 
 class RepositoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Repository::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
     {
-        $repositories = Repository::paginate();
+        $repositories = new RepositoryCollection(Repository::paginate());
 
         return Inertia::render('Repositories/RepositoryIndex', [
             'repositories' => $repositories,

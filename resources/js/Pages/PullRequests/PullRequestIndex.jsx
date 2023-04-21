@@ -21,7 +21,7 @@ export default function PullRequestIndex({ auth, pullRequests }) {
                 </td>
                 {/* Action */}
                 <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
-                    {data.can_delete && (
+                    {data.can.delete && (
                         <Link
                             href={route('pull-requests.destroy', data.id)}
                             method="delete"
@@ -43,7 +43,7 @@ export default function PullRequestIndex({ auth, pullRequests }) {
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     Pull Request{' '}
                     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                        {pullRequests.total + (pullRequests.total > 1 ? ' pull requests' : ' pull request')}
+                        {pullRequests.meta.total + (pullRequests.meta.total > 1 ? ' pull requests' : ' pull request')}
                     </span>
                 </h2>
             }
