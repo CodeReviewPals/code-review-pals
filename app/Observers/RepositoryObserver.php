@@ -16,7 +16,7 @@ class RepositoryObserver
      */
     public function restoring(Repository $repository): bool
     {
-        return $repository->deleted_at === null;
+        return $repository->deleted_at !== null;
     }
 
     /**
