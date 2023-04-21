@@ -30,8 +30,10 @@ class StoreRepositoryRequest extends FormRequest
                 'required',
                 'string',
                 Rule::unique(Repository::class, 'full_name')->where(function (Builder $query) {
-                    return $query->where('node_id', $this->get('nodeId'))->where('full_name', $this->get('fullName'));
-                }),
+                    return $query
+                        ->where('node_id', $this->get('nodeId'))
+                        ->whereNull('deleted_at');
+                })
             ],
             'description' => ['nullable', 'string'],
             'language' => ['nullable', 'string'],

@@ -35,7 +35,12 @@ class RepositoryController extends Controller
         $request
             ->user()
             ->repositories()
-            ->create($data->toArray());
+            ->withTrashed()
+            ->updateOrCreate([
+                'node_id'   => $data->nodeId,
+                'full_name' => $data->fullName,
+            ], $data->toArray(),
+            )->restore();
 
         return to_route('repositories.index');
     }
