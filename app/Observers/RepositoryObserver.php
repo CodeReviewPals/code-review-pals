@@ -12,6 +12,14 @@ use App\Jobs\Github\Repository\CreateWebhookFromRepositoryJob;
 class RepositoryObserver
 {
     /**
+     * If the model is not deleted, don't restore it.
+     */
+    public function restoring(Repository $repository): bool
+    {
+        return $repository->deleted_at !== null;
+    }
+
+    /**
      * Handle the Repository "created" event.
      */
     public function created(Repository $repository): void

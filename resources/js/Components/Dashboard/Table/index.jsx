@@ -1,5 +1,5 @@
-import { Link } from "@inertiajs/react";
-import DashboardTablePagination from "../Pagination";
+import { Link } from '@inertiajs/react';
+import DashboardTablePagination from '../Pagination';
 
 export default function DashboardTable({
     tableData,
@@ -94,8 +94,8 @@ export default function DashboardTable({
                 </div>
 
                 <DashboardTablePagination
-                    totalPages={Math.ceil(tableData.total / tableData.per_page)}
-                    currentPage={tableData.current_page}
+                    totalPages={Math.ceil(tableData.meta.total / tableData.meta.per_page)}
+                    currentPage={tableData.meta.current_page}
                     links={tableData.links}
                 />
             </section>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\Model\HasPermissions;
 use App\Enums\Discord\ChannelType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +19,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 class Repository extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        HasPermissions;
 
     protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
 
