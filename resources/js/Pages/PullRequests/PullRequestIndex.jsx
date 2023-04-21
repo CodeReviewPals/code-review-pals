@@ -1,8 +1,8 @@
-import DashboardTable from "@/Components/Dashboard/Table";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {Head, Link} from "@inertiajs/react";
+import DashboardTable from '@/Components/Dashboard/Table';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { Head, Link } from '@inertiajs/react';
 
-export default function PullRequestIndex({auth, pullRequests}) {
+export default function PullRequestIndex({ auth, pullRequests }) {
     const rowRender = (data, index) => {
         return (
             <tr key={index}>
@@ -21,11 +21,16 @@ export default function PullRequestIndex({auth, pullRequests}) {
                 </td>
                 {/* Action */}
                 <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
-                    { auth.user.id === data.user_id &&
-                        <Link href={route('pull-requests.destroy', data.id)} method="delete" className="text-red-600 hover:text-red-900">
+                    {data.can_delete && (
+                        <Link
+                            href={route('pull-requests.destroy', data.id)}
+                            method="delete"
+                            className="text-red-600 hover:text-red-900"
+                            as="button"
+                        >
                             Delete
                         </Link>
-                    }
+                    )}
                 </td>
             </tr>
         );
@@ -36,15 +41,14 @@ export default function PullRequestIndex({auth, pullRequests}) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Pull Request{" "}
-                    <span
-                        className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                    Pull Request{' '}
+                    <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
                         {pullRequests.total + (pullRequests.total > 1 ? ' pull requests' : ' pull request')}
                     </span>
                 </h2>
             }
         >
-            <Head title="Repository"/>
+            <Head title="Repository" />
 
             <div className="py-12">
                 <DashboardTable
@@ -52,7 +56,7 @@ export default function PullRequestIndex({auth, pullRequests}) {
                     routePrefix="pull-requests"
                     rowRender={rowRender}
                     suffixName="Pull Request"
-                    columnsTitle={["ID", "Repository", "Title", "Actions"]}
+                    columnsTitle={['ID', 'Repository', 'Title', 'Actions']}
                 />
             </div>
         </AuthenticatedLayout>
