@@ -2,9 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\PullRequest;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Models\PullRequest;
 
 class PullRequestPolicy
 {
@@ -23,26 +22,26 @@ class PullRequestPolicy
         return true;
     }
 
-    public function update(): bool
+    public function update(User $user, PullRequest $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, PullRequest $pullRequest): bool
+    public function delete(User $user, PullRequest $repository): bool
     {
-        return $pullRequest->user_id === $user->id;
+        return isSelfUser($repository, $user);
     }
 
-    public function restore(): bool
+    public function restore(User $user, PullRequest $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 
-    public function forceDelete(): bool
+    public function forceDelete(User $user, PullRequest $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 }

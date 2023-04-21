@@ -22,9 +22,9 @@ class RepositoryPolicy
         return true;
     }
 
-    public function update(): bool
+    public function update(User $user, Repository $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 
     /**
@@ -32,16 +32,16 @@ class RepositoryPolicy
      */
     public function delete(User $user, Repository $repository): bool
     {
-        return $repository->user_id === $user->id;
+        return isSelfUser($repository, $user);
     }
 
-    public function restore(): bool
+    public function restore(User $user, Repository $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 
-    public function forceDelete(): bool
+    public function forceDelete(User $user, Repository $repository): bool
     {
-        return true;
+        return isSelfUser($repository, $user);
     }
 }
