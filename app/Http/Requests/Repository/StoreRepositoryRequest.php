@@ -32,7 +32,6 @@ class StoreRepositoryRequest extends FormRequest
                 Rule::unique(Repository::class, 'full_name')->where(function (Builder $query) {
                     return $query
                         ->where('node_id', $this->get('nodeId'))
-                        ->where('full_name', $this->get('fullName'))
                         ->whereNull('deleted_at');
                 })
             ],
