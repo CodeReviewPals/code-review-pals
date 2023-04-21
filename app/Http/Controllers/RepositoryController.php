@@ -60,8 +60,6 @@ class RepositoryController extends Controller
      */
     public function destroy(Repository $repository): RedirectResponse
     {
-        $this->authorize('delete', $repository);
-
         $repository->delete();
 
         return to_route('repositories.index');
