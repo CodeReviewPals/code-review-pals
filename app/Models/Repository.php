@@ -20,6 +20,8 @@ class Repository extends Model
         HasPermissions;
 
     protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
+        'owner_id',
+        'user_id',
 
     /**
      * @var string[]
@@ -65,6 +67,6 @@ class Repository extends Model
      */
     public function scopeForJob(Builder $query): Builder
     {
-        return $query->select(['id', 'node_id', 'full_name', 'user_id']);
+        return $query->select(['id', 'node_id', 'full_name', 'added_by', 'owner_id']);
     }
 }
