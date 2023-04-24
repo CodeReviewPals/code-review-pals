@@ -11,6 +11,7 @@ export default function AddRepositoryModal({auth, provider, closeThirdPartyModal
         description: "",
         language: "",
         htmlUrl: "",
+        owner:{}
     })
 
     const providerLogos = {github: GithubLogo};

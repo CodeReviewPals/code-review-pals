@@ -35,6 +35,7 @@ class StoreRepositoryRequest extends FormRequest
                         ->whereNull('deleted_at');
                 })
             ],
+            'owner' => ['required', 'array'],
             'description' => ['nullable', 'string'],
             'language' => ['nullable', 'string'],
             'htmlUrl' => ['required', 'string'],
