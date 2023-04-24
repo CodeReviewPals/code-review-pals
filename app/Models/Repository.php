@@ -16,10 +16,16 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 class Repository extends Model
 {
-    use SoftDeletes,
-        HasPermissions;
+    use SoftDeletes, HasPermissions;
 
-    protected $fillable = ['node_id', 'user_id', 'full_name', 'description', 'language', 'html_url'];
+    protected $fillable = [
+        'node_id',
+        'user_id',
+        'full_name',
+        'description',
+        'language',
+        'html_url',
+    ];
 
     /**
      * @var string[]

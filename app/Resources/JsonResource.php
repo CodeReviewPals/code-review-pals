@@ -4,7 +4,7 @@ namespace App\Resources;
 
 use Illuminate\Http\Request;
 use App\Concerns\Model\HasPermissions;
-use \Illuminate\Http\Resources\Json\JsonResource as BaseJsonResource;
+use Illuminate\Http\Resources\Json\JsonResource as BaseJsonResource;
 
 class JsonResource extends BaseJsonResource
 {

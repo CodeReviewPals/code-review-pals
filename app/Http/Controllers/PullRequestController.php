@@ -12,9 +12,7 @@ use App\Http\Requests\PullRequest\StorePullRequestRequest;
 
 class PullRequestController extends Controller
 {
-    public function __construct(
-        protected PullRequestService $service,
-    )
+    public function __construct(protected PullRequestService $service)
     {
         $this->authorizeResource(PullRequest::class);
     }

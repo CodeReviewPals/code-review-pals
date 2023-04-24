@@ -24,9 +24,9 @@ class PullRequestCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'can'  => [
+            'can' => [
                 'viewAny' => $request->user()?->can('viewAny', PullRequest::class) ?? false,
-                'create'  => $request->user()?->can('create', PullRequest::class) ?? false,
+                'create' => $request->user()?->can('create', PullRequest::class) ?? false,
             ],
         ];
     }

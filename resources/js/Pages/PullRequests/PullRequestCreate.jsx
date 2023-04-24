@@ -1,12 +1,12 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {Head, useForm} from "@inertiajs/react";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { Head, useForm } from '@inertiajs/react';
+import InputLabel from '@/Components/InputLabel';
+import TextInput from '@/Components/TextInput';
+import InputError from '@/Components/InputError';
+import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function PullRequestCreate({auth, pullRequests}) {
-    const {data, setData, post, processing, errors} = useForm({
+export default function PullRequestCreate({ auth, pullRequests }) {
+    const { data, setData, post, processing, errors } = useForm({
         link: '',
     });
 
@@ -25,14 +25,14 @@ export default function PullRequestCreate({auth, pullRequests}) {
                 </h2>
             }
         >
-            <Head title="Repository"/>
+            <Head title="Repository" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4">
                         <form onSubmit={submit}>
                             <div>
-                                <InputLabel htmlFor="link" value="Pull request url"/>
+                                <InputLabel htmlFor="link" value="Pull request url" />
 
                                 <TextInput
                                     id="link"
@@ -44,7 +44,7 @@ export default function PullRequestCreate({auth, pullRequests}) {
                                     required
                                 />
 
-                                <InputError message={errors.link} className="mt-2"/>
+                                <InputError message={errors.link} className="mt-2" />
                             </div>
 
                             <PrimaryButton className="mt-4" disabled={processing}>
