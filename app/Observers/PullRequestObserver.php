@@ -4,15 +4,18 @@ namespace App\Observers;
 
 use App\Models\PullRequest;
 use App\Actions\PullRequest\GenerateRepositoryName;
+use App\Actions\Repository\CreateRepositoryByPullRequest;
 
 class PullRequestObserver
 {
     /**
      * Handle the PullRequest "created" event.
      */
-    public function created(PullRequest $pullRequest): void
+    public function saving(PullRequest $pullRequest): void
     {
-        app(GenerateRepositoryName::class)->execute($pullRequest);
+        $pullRequest->repository = app(GenerateRepositoryName::class)->execute($pullRequest);
+        $repository = app(CreateRepositoryByPullRequest::class)->execute($pullRequest);
+        $pullRequest->repository_id = $repository->id;
     }
 
     /**
