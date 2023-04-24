@@ -19,6 +19,6 @@ class GenerateRepositoryName
             'repository' => $repository,
         ] = app(PullRequestService::class)->getRegexMatch($pullRequest->html_url);
 
-        return "${username}/${repository}";
+        return sprintf('%s/%s', $username, $repository);
     }
 }
