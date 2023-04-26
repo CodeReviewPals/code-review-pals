@@ -40,7 +40,7 @@ class CreateRepositoryByPullRequest
         $repositoryData = RepositoryData::from($repository);
         $data = DTORepositoryData::from($repositoryData)->toArray();
         $data['user_id'] = $pullRequest->user_id;
-        $data['owner_id'] = $repositoryData->owner->id;
+        $data['owner_third_party_id'] = $repositoryData->owner->id;
         $repository = Repository::withTrashed()->updateOrCreate(
             [
                 'node_id' => $data['node_id'],

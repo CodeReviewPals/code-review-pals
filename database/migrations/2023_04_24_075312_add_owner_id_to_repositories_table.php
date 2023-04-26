@@ -11,8 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('repositories', static function (Blueprint $table) {
-            // third party user_id (ex: github user id)
-            $table->string('owner_id');
+            $table->string('owner_third_party_id');
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('repositories', static function (Blueprint $table) {
-            $table->dropColumn('owner_id');
+            $table->dropColumn('owner_third_party_id');
         });
     }
 };
