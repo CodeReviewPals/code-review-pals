@@ -2,7 +2,7 @@
 
 namespace App\Actions\Repository;
 
-use App\Actions\Github\Repository\FetchRepositoryByFullName;
+use App\Actions\Github\Repository\FetchRepository;
 use App\DTO\Github\Repository\RepositoryData;
 use App\DTO\RepositoryData as DTORepositoryData;
 use App\Models\PullRequest;
@@ -27,13 +27,20 @@ class CreateRepositoryByPullRequest
         if ($repository) {
             return $repository;
         }
-        $repository = app(FetchRepositoryByFullName::class)
-            ->execute($pullRequest->repository)
+
+        [
+            'username' => $username,
+            'repository' => $repository,
+        ] = app(PullRequestService::class)->getRegexMatch($pullRequest->html_url);
+
+        $repository = app(FetchRepository::class)
+            ->execute($username, $repository)
             ->dtoOrFail();
 
         $repositoryData = RepositoryData::from($repository);
         $data = DTORepositoryData::from($repositoryData)->toArray();
         $data['user_id'] = $pullRequest->user_id;
+        $data['owner_id'] = $repositoryData->owner->id;
         $repository = Repository::withTrashed()->updateOrCreate(
             [
                 'node_id' => $data['node_id'],
