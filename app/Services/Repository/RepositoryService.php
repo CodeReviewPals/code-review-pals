@@ -6,9 +6,9 @@ use App\Models\Repository;
 
 class RepositoryService
 {
-    public function isRegistered(string $fullName): Repository|false
+    public function getRepositoryByFullName(string $fullName): ?Repository
     {
         $repository = Repository::where('full_name', $fullName)->first();
-        return $repository ?? false;
+        return $repository;
     }
 }
