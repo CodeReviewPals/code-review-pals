@@ -12,7 +12,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('pull_requests', static function (Blueprint $table) {
-            $table->foreignIdFor(Repository::class, 'repository_id')->nullable();
+            $table
+                ->foreignIdFor(Repository::class, 'repository_id')
+                ->onDelete('cascade')
+                ->onUpdate('cascade')
+                ->nullable();
         });
     }
 
