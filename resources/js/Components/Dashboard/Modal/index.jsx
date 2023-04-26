@@ -1,4 +1,4 @@
-import { Children } from "react";
+import { Children } from 'react';
 
 export default function DashboardModal({ thirdPartyModal, closeThirdPartyModal, children }) {
     const setOpenModal = () => {
@@ -12,7 +12,9 @@ export default function DashboardModal({ thirdPartyModal, closeThirdPartyModal, 
                     onClick={() => setOpenModal(false)}
                 ></div>
                 <div className="flex items-center min-h-screen px-4 py-8">
-                    <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">{children}</div>
+                    <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                        {children}
+                    </div>
                 </div>
             </div>
         </>

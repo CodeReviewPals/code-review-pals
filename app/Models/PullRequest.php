@@ -10,13 +10,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PullRequest extends Model
 {
-    use SoftDeletes,
-        HasPermissions;
+    use SoftDeletes, HasPermissions;
 
     /**
      * @var string[]
      */
-    protected $fillable = ['node_id', 'repository', 'title', 'html_url', 'status', 'description', 'user_id'];
+    protected $fillable = [
+        'node_id',
+        'repository',
+        'title',
+        'html_url',
+        'status',
+        'description',
+        'user_id',
+    ];
 
     /**
      * @var array<string, string>

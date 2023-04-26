@@ -24,9 +24,9 @@ class RepositoryCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'can'  => [
+            'can' => [
                 'viewAny' => $request->user()?->can('viewAny', Repository::class) ?? false,
-                'create'  => $request->user()?->can('create', Repository::class) ?? false,
+                'create' => $request->user()?->can('create', Repository::class) ?? false,
             ],
         ];
     }

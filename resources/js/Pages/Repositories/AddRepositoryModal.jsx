@@ -1,40 +1,46 @@
-import {useEffect, useState} from "react";
-import GithubLogo from "../../../images/dashboard/github.svg";
-import {useForm} from "@inertiajs/react";
-import SecondaryButton from "@/Components/SecondaryButton";
+import { useEffect, useState } from 'react';
+import GithubLogo from '../../../images/dashboard/github.svg';
+import { useForm } from '@inertiajs/react';
+import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function AddRepositoryModal({auth, provider, closeThirdPartyModal, repositories, setRepositories}) {
+export default function AddRepositoryModal({
+    auth,
+    provider,
+    closeThirdPartyModal,
+    repositories,
+    setRepositories,
+}) {
+    const { data, setData, post } = useForm({
+        nodeId: '',
+        fullName: '',
+        description: '',
+        language: '',
+        htmlUrl: '',
+        owner: {},
+    });
 
-    const {data, setData, post} = useForm({
-        nodeId: "",
-        fullName: "",
-        description: "",
-        language: "",
-        htmlUrl: "",
-        owner:{}
-    })
-
-    const providerLogos = {github: GithubLogo};
+    const providerLogos = { github: GithubLogo };
 
     const dataFetch = async () => {
         await axios
-            .get(route('third-party-repositories.index', {
+            .get(
+                route('third-party-repositories.index', {
                     username: auth.user.name,
                     provider: provider,
                 })
             )
-            .then(response => setRepositories(response.data));
+            .then((response) => setRepositories(response.data));
     };
 
     useEffect(() => {
-        if(repositories.length > 0){
+        if (repositories.length > 0) {
             return;
         }
         (async () => await dataFetch())();
     }, []);
 
     useEffect(() => {
-        if (data.nodeId !== "") {
+        if (data.nodeId !== '') {
             addRepository();
         }
     }, [data]);
@@ -43,17 +49,20 @@ export default function AddRepositoryModal({auth, provider, closeThirdPartyModal
         post(route('repositories.store'));
 
         closeThirdPartyModal();
-    }
+    };
 
     const renderRepository = (repository) => {
         return (
-            <div key={repository.nodeId}
-                 className="mt-5 flex items-center justify-between p-2 hover:text-slate-600 cursor-pointer">
+            <div
+                key={repository.nodeId}
+                className="mt-5 flex items-center justify-between p-2 hover:text-slate-600 cursor-pointer"
+            >
                 <div className="flex items-center justify-center gap-2">
                     <img
                         src={providerLogos[provider]}
                         className="invert relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px"
-                        alt={provider}/>
+                        alt={provider}
+                    />
                     <p className="text-base font-bold text-navy-700">{repository.fullName}</p>
                 </div>
 
@@ -72,11 +81,11 @@ export default function AddRepositoryModal({auth, provider, closeThirdPartyModal
                 </div>
             </div>
 
-            {repositories.length > 0 &&
+            {repositories.length > 0 && (
                 <div className="h-96 w-full overflow-y-scroll">
                     {repositories.map(renderRepository)}
                 </div>
-            }
+            )}
         </div>
     );
 }

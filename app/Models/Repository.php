@@ -20,7 +20,7 @@ class Repository extends Model
 
     protected $fillable = [
         'node_id',
-        'owner_id',
+        'owner_third_party_id',
         'user_id',
         'full_name',
         'description',
