@@ -12,12 +12,12 @@ use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 #[MapInputName(SnakeCaseMapper::class)]
 class RepositoryData extends Data
 {
-    public string $htmlUrl;
     public function __construct(
         public int $id,
         public string $nodeId,
         public string $name,
         public string $fullName,
+        public string $htmlUrl,
         public bool $private,
         public OwnerData $owner,
         public ?string $description,
@@ -36,6 +36,5 @@ class RepositoryData extends Data
         #[WithTransformer(DateTimeInterfaceTransformer::class)] public CarbonImmutable $updatedAt,
         #[WithTransformer(DateTimeInterfaceTransformer::class)] public ?CarbonImmutable $pushedAt
     ) {
-        $this->htmlUrl = sprintf('https://github.com/%s', $this->fullName);
     }
 }

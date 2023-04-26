@@ -12,7 +12,6 @@ use Spatie\LaravelData\Attributes\MapOutputName;
 #[MapOutputName(SnakeCaseMapper::class)]
 class RepositoryData extends Data
 {
-    public string $ownerId;
     public function __construct(
         public string $nodeId,
         public string $fullName,
@@ -21,6 +20,5 @@ class RepositoryData extends Data
         public string $htmlUrl,
         public OwnerData $owner
     ) {
-        $this->ownerId = $owner->id;
     }
 }
