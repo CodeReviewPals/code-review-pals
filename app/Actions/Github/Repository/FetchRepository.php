@@ -10,7 +10,7 @@ use Saloon\Exceptions\InvalidResponseClassException;
 use App\Http\Integrations\Github\PullRequest\Requests\GetPullRequestInformation;
 use App\Http\Integrations\Github\Repository\Requests\GetRepositoryInformation;
 
-class FetchRepositoryByFullName
+class FetchRepository
 {
     use GithubAction;
 
@@ -19,9 +19,8 @@ class FetchRepositoryByFullName
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
      */
-    public function execute(string $fullName): Response
+    public function execute(string $username, string $repository): Response
     {
-        [$username, $repository] = explode('/', $fullName);
         $request = new GetRepositoryInformation(username: $username, repository: $repository);
 
         return $this->connector->send($request);
