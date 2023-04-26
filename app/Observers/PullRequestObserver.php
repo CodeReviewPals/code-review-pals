@@ -11,11 +11,12 @@ class PullRequestObserver
     /**
      * Handle the PullRequest "created" event.
      */
-    public function saving(PullRequest $pullRequest): void
+    public function created(PullRequest $pullRequest): void
     {
         $pullRequest->repository = app(GenerateRepositoryName::class)->execute($pullRequest);
         $repository = app(CreateRepositoryByPullRequest::class)->execute($pullRequest);
         $pullRequest->repository_id = $repository->id;
+        $pullRequest->saveQuietly();
     }
 
     /**
