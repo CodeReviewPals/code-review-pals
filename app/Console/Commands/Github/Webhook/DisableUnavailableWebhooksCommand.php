@@ -14,7 +14,7 @@ class DisableUnavailableWebhooksCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'github:disable-unavailable-webhooks-job';
+    protected $signature = 'github:disable-unavailable-webhooks';
 
     /**
      * The console command description.
