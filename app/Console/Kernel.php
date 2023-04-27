@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('github:fetch-pull-request')->hourly();
+        $schedule->command('github:disable-unavailable-webhooks')->daily();
     }
 
     /**
