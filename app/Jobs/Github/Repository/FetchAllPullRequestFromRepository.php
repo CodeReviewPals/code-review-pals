@@ -33,7 +33,10 @@ class FetchAllPullRequestFromRepository implements ShouldQueue
         try {
             /** @var DataCollection<int, PullRequestData> $pullRequests */
             $pullRequests = app(GetAllPullRequest::class)
-                ->execute(username: $this->repository->username, repository: $this->repository->repository)
+                ->execute(
+                    username: $this->repository->username,
+                    repository: $this->repository->repository
+                )
                 ->dtoOrFail();
 
             if (!$pullRequests instanceof DataCollection) {

@@ -15,7 +15,11 @@ export default function PullRequestIndex({ auth, pullRequests }) {
                     <h6 className="text-gray-500 dark:text-gray-400">{data.repository}</h6>
                 </td>
                 <td className="px-4 py-4 text-sm text-center whitespace-nowrap">
-                    <a href={data.html_url} target="_blank" className="text-white underline font-bold">
+                    <a
+                        href={data.html_url}
+                        target="_blank"
+                        className="text-white underline font-bold"
+                    >
                         <p className="text-gray-500 dark:text-gray-400">{data.title}</p>
                     </a>
                 </td>

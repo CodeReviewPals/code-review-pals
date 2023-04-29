@@ -94,7 +94,10 @@ export default function RepositoryIndex({ auth, repositories }) {
                 />
             </div>
             {thirdPartyModal.active && (
-                <DashboardModal thirdPartyModal={thirdPartyModal} closeThirdPartyModal={closeThirdPartyModal}>
+                <DashboardModal
+                    thirdPartyModal={thirdPartyModal}
+                    closeThirdPartyModal={closeThirdPartyModal}
+                >
                     <AddRepositoryModal
                         auth={auth}
                         provider={thirdPartyModal.provider}

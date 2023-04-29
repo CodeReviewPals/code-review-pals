@@ -21,7 +21,12 @@ class PullRequestLink implements ValidationRule
             $fail('The :attribute must be a string');
         }
 
-        if (!preg_match(pattern: (string) config('regex.github.pull_request.url'), subject: (string) $value)) {
+        if (
+            !preg_match(
+                pattern: (string) config('regex.github.pull_request.url'),
+                subject: (string) $value
+            )
+        ) {
             $fail('The :attribute must be a correct pull request link.');
         }
     }

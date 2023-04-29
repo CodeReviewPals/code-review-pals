@@ -33,7 +33,12 @@ class GetPullRequestInformation extends Request
      */
     public function resolveEndpoint(): string
     {
-        return '/repos/' . $this->username . '/' . $this->repository . '/pulls/' . $this->pullRequestNumber;
+        return '/repos/' .
+            $this->username .
+            '/' .
+            $this->repository .
+            '/pulls/' .
+            $this->pullRequestNumber;
     }
 
     /**
