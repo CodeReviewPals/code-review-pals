@@ -1,39 +1,28 @@
 import { Link, Head } from '@inertiajs/react';
-import Logo from '~/images/logo.svg';
-import GithubLogo from '~/images/dashboard/github.svg';
-import { useState } from 'react';
-import { Header } from '@/Containers/Header/header';
+import logo from '../../images/Mainlogo.png';
+import GithubLogo from '../../images/dashboard/github.svg';
+
+import { Title } from '@/Components/Title/Title';
+import './style.css';
 
 export default function Welcome({ auth, title }) {
     const returnAuthHeaderBtn = () => {
         if (auth.user) {
             return (
-                <Link
-                    href={route('dashboard')}
-                    className="text-white inline-flex items-center bg-black border-0 py-1 px-3 focus:outline-none hover:bg-black rounded text-base mt-4 md:mt-0"
-                >
-                    Dashboard
-                    <svg
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        className="w-4 h-4 ml-1"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
+                <Link href={route('dashboard')}>
+                    <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        <img className="w-6 inline-block mr-2 invert" src={logo} alt="Logo GitHub" />
+                        Dashboard
+                    </button>
                 </Link>
             );
         }
         return (
-            <a
-                href={route('socialite.redirect', 'github')}
-                className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-            >
-                <img src={GithubLogo} className="h-7 mr-3 my-1 invert" />
-                Login
+            <a href={route('socialite.redirect', 'github')}>
+                <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    <img className="w-8 inline-block mr-2" src={GithubLogo} alt="Logo GitHub" />
+                    Connect
+                </button>
             </a>
         );
     };
@@ -41,7 +30,13 @@ export default function Welcome({ auth, title }) {
     return (
         <>
             <Head title={title} />
-            <Header />
+            <header className="flex items-center justify-between mx-4 mt-2">
+                <div className="title flex items-center">
+                    <img className="w-16" src={logo} alt="Logo code reviews pals" />
+                    <Title />
+                </div>
+                <nav>{returnAuthHeaderBtn()}</nav>
+            </header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32">
                 <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
                     Tough for{' '}
