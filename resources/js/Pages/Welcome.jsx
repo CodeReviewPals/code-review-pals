@@ -1,6 +1,7 @@
 import { Link, Head } from '@inertiajs/react';
 import logo from '../../images/Mainlogo.png';
 import GithubLogo from '../../images/dashboard/github.svg';
+import Button from '../Components/Button/Button';
 
 import { Title } from '@/Components/Title/Title';
 import './style.css';
@@ -10,19 +11,13 @@ export default function Welcome({ auth, title }) {
         if (auth.user) {
             return (
                 <Link href={route('dashboard')}>
-                    <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                        <img className="w-6 inline-block mr-2 invert" src={logo} alt="Logo GitHub" />
-                        Dashboard
-                    </button>
+                    <Button size="w-6" text="Dashboard" color={'invert'} logo={logo} />
                 </Link>
             );
         }
         return (
             <a href={route('socialite.redirect', 'github')}>
-                <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    <img className="w-8 inline-block mr-2" src={GithubLogo} alt="Logo GitHub" />
-                    Connect
-                </button>
+                <Button size="w-8" text="Login" color="invert-0" logo={GithubLogo} />
             </a>
         );
     };
