@@ -1,6 +1,6 @@
 import { Link, Head } from '@inertiajs/react';
-import logo from '../../images/Mainlogo.png';
-import GithubLogo from '../../images/dashboard/github.svg';
+import logo from '~/images/main-logo.png';
+import GithubLogo from '~/images/dashboard/github.svg';
 
 import { Title } from '@/Components/Title/Title';
 import './style.css';
