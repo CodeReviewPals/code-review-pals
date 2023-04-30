@@ -32,8 +32,9 @@ class SocialiteController extends Controller
      *
      * @return RedirectResponse
      */
-    public function callback(SocialiteProvider $provider): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    public function callback(
+        SocialiteProvider $provider
+    ): \Symfony\Component\HttpFoundation\RedirectResponse {
         $userData = Socialite::driver($provider->value)->user();
 
         $user = User::updateOrCreate(

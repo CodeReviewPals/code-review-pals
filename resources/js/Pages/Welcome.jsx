@@ -1,8 +1,8 @@
 import { Link, Head } from '@inertiajs/react';
-import logo from '../../images/Mainlogo.png';
-import GithubLogo from '../../images/dashboard/github.svg';
-import Button from '../Components/Button/Button';
-import pr from '../../images/pr.png';
+import logo from '~/images/Mainlogo.png';
+import GithubLogo from '~/images/dashboard/github.svg';
+import Button from '@/Components/Button/Button';
+import pr from '~/images/pr.png';
 
 import { Title } from '@/Components/Title/Title';
 import './style.css';
@@ -38,7 +38,8 @@ export default function Welcome({ auth, title }) {
                     "Junior developer? Get a senior mentor to guide you to success."
                 </h1>
                 <p className="mx-auto mt-6 max-w-2xl text-xl tracking-tight text-slate-700">
-                    "Our platform links you with senior developers and offers a supportive community."
+                    "Our platform links you with senior developers and offers a supportive
+                    community."
                 </p>
                 <div className="mt-10 flex justify-center gap-x-6">
                     <a className="group inline-flex items-center justify-center" href="/register">
@@ -54,7 +55,12 @@ export default function Welcome({ auth, title }) {
                         className="inline-flex items-center justify-center rounded-full py-2 px-4 text-lg"
                         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     >
-                        <Button size="w-6" text="Make your first Pull Request" divers={true} logo={pr} />
+                        <Button
+                            size="w-6"
+                            text="Make your first Pull Request"
+                            divers={true}
+                            logo={pr}
+                        />
                     </a>
                 </div>
             </div>

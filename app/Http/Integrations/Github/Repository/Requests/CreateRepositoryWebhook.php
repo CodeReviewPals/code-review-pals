@@ -23,8 +23,11 @@ class CreateRepositoryWebhook extends Request implements HasBody
      */
     protected Method $method = Method::POST;
 
-    public function __construct(public string $username, public string $repository, private readonly string $secret)
-    {
+    public function __construct(
+        public string $username,
+        public string $repository,
+        private readonly string $secret
+    ) {
     }
 
     /**

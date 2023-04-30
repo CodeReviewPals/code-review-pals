@@ -17,8 +17,11 @@ class DeleteRepositoryWebhook extends Request
      */
     protected Method $method = Method::DELETE;
 
-    public function __construct(public string $username, public string $repository, public string $hookId)
-    {
+    public function __construct(
+        public string $username,
+        public string $repository,
+        public string $hookId
+    ) {
     }
 
     /**
