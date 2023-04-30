@@ -1,5 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
-import logo from '~/images/Mainlogo.png';
+import logo from '~/images/main-logo.png';
 import GithubLogo from '~/images/dashboard/github.svg';
 import Button from '@/Components/Button/Button';
 import pr from '~/images/pr.png';
