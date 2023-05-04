@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Github\PullRequest;
+namespace App\Actions\Github\Repository;
 
 use ReflectionException;
 use Saloon\Contracts\Response;
@@ -8,8 +8,9 @@ use App\Actions\Github\GithubAction;
 use Saloon\Exceptions\PendingRequestException;
 use Saloon\Exceptions\InvalidResponseClassException;
 use App\Http\Integrations\Github\PullRequest\Requests\GetPullRequestInformation;
+use App\Http\Integrations\Github\Repository\Requests\GetRepositoryInformation;
 
-class FetchPullRequestInformation
+class FetchRepository
 {
     use GithubAction;
 
@@ -18,16 +19,9 @@ class FetchPullRequestInformation
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
      */
-    public function execute(
-        string $username,
-        string $repository,
-        int|string $pullRequestNumber
-    ): Response {
-        $request = new GetPullRequestInformation(
-            username: $username,
-            repository: $repository,
-            pullRequestNumber: $pullRequestNumber
-        );
+    public function execute(string $username, string $repository): Response
+    {
+        $request = new GetRepositoryInformation(username: $username, repository: $repository);
 
         return $this->connector->send($request);
     }

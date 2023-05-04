@@ -68,9 +68,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel has wonderful documentation covering every aspect of the framework.
-                                        Whether you are a newcomer or have prior experience with Laravel, we recommend
-                                        reading our documentation from beginning to end.
+                                        Laravel has wonderful documentation covering every aspect of
+                                        the framework. Whether you are a newcomer or have prior
+                                        experience with Laravel, we recommend reading our
+                                        documentation from beginning to end.
                                     </p>
                                 </div>
 
@@ -114,9 +115,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript
-                                        development. Check them out, see for yourself, and massively level up your
-                                        development skills in the process.
+                                        Laracasts offers thousands of video tutorials on Laravel,
+                                        PHP, and JavaScript development. Check them out, see for
+                                        yourself, and massively level up your development skills in
+                                        the process.
                                     </p>
                                 </div>
 
@@ -161,9 +163,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel News is a community driven portal and newsletter aggregating all of the
-                                        latest and most important news in the Laravel ecosystem, including new package
-                                        releases and tutorials.
+                                        Laravel News is a community driven portal and newsletter
+                                        aggregating all of the latest and most important news in the
+                                        Laravel ecosystem, including new package releases and
+                                        tutorials.
                                     </p>
                                 </div>
 
@@ -205,7 +208,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel's robust library of first-party tools and libraries, such as{' '}
+                                        Laravel's robust library of first-party tools and libraries,
+                                        such as{' '}
                                         <a
                                             href="https://forge.laravel.com"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
@@ -233,8 +237,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         >
                                             Envoyer
                                         </a>{' '}
-                                        help you take your projects to the next level. Pair them with powerful open
-                                        source libraries like{' '}
+                                        help you take your projects to the next level. Pair them
+                                        with powerful open source libraries like{' '}
                                         <a
                                             href="https://laravel.com/docs/billing"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"

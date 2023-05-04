@@ -31,12 +31,17 @@ class WebhookService
         $knownSignature = hash_hmac('sha1', $this->request->getContent(), $secret);
 
         if (!hash_equals($knownSignature, $signatureParts[1])) {
-            throw new UnauthorizedException('Could not verify request signature ' . $signatureParts[1]);
+            throw new UnauthorizedException(
+                'Could not verify request signature ' . $signatureParts[1]
+            );
         }
     }
 
     public function getHandler(WebhookData $webhookData): string
     {
-        return 'handle' . Str::studly(value: $this->request->header('X-GitHub-Event') . '_' . $webhookData->action);
+        return 'handle' .
+            Str::studly(
+                value: $this->request->header('X-GitHub-Event') . '_' . $webhookData->action
+            );
     }
 }

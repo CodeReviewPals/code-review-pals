@@ -12,7 +12,7 @@ use App\DTO\Github\Repository\Webhook\WebhookCreatedData;
 /**
  * @link https://docs.github.com/en/rest/webhooks/repos#create-a-repository-webhook Documentation
  */
-class CreateRepositoryWebhook extends Request implements HasBody
+class GetRepositoryWebhooks extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -26,7 +26,7 @@ class CreateRepositoryWebhook extends Request implements HasBody
     public function __construct(
         public string $username,
         public string $repository,
-        private readonly string $secret
+        private readonly string $hookId
     ) {
     }
 
@@ -37,7 +37,7 @@ class CreateRepositoryWebhook extends Request implements HasBody
      */
     public function resolveEndpoint(): string
     {
-        return "/repos/{$this->username}/{$this->repository}/hooks";
+        return sprintf('/repos/%s/%s/hooks/%s', $this->username, $this->repository, $this->hookId);
     }
 
     /**
@@ -50,8 +50,6 @@ class CreateRepositoryWebhook extends Request implements HasBody
             'active' => true,
             'events' => ['*'],
             'config' => [
-                'secret' => $this->secret,
-                'url' => route('webhooks.github.repository'),
                 'content_type' => 'json',
             ],
         ];

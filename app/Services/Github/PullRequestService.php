@@ -28,7 +28,11 @@ class PullRequestService
 
         try {
             return app(FetchPullRequestInformation::class)
-                ->execute(username: $username, repository: $repository, pullRequestNumber: $pullRequestNumber)
+                ->execute(
+                    username: $username,
+                    repository: $repository,
+                    pullRequestNumber: $pullRequestNumber
+                )
                 ->dtoOrFail();
         } catch (Exception) {
             return null;
@@ -44,7 +48,11 @@ class PullRequestService
      */
     public function getRegexMatch(string $url): array
     {
-        preg_match(pattern: (string) config('regex.github.pull_request.url'), subject: $url, matches: $extraction);
+        preg_match(
+            pattern: (string) config('regex.github.pull_request.url'),
+            subject: $url,
+            matches: $extraction
+        );
 
         return [
             'username' => $extraction[1],
@@ -70,6 +78,9 @@ class PullRequestService
             exit();
         }
 
-        return app(CreatePullRequest::class)->execute(pullRequestData: $pullRequestData, user: $request->user());
+        return app(CreatePullRequest::class)->execute(
+            pullRequestData: $pullRequestData,
+            user: $request->user()
+        );
     }
 }

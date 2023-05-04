@@ -24,7 +24,10 @@ class GetAllPullRequest
      */
     public function execute(string $username, string $repository): Response
     {
-        $request = new GetAllPullRequestFromRepository(username: $username, repository: $repository);
+        $request = new GetAllPullRequestFromRepository(
+            username: $username,
+            repository: $repository
+        );
 
         return $this->connector->send($request);
     }

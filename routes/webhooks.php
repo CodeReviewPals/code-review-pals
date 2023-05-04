@@ -8,6 +8,8 @@ Route::group(
         'as' => 'github.',
     ],
     function () {
-        Route::post('repository', HandleGithubRepositoryWebhookController::class)->name('repository');
+        Route::post('repository', HandleGithubRepositoryWebhookController::class)->name(
+            'repository'
+        );
     }
 );
