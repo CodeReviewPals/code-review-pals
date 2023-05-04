@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('github:fetch-pull-request')->hourly();
         $schedule->command('github:disable-unavailable-webhooks')->daily();
+        $schedule->command('queue:flush --hours=24')->daily();
     }
 
     /**

@@ -20,6 +20,7 @@ class Repository extends Model
 
     protected $fillable = [
         'node_id',
+        'owner_third_party_id',
         'user_id',
         'full_name',
         'description',
@@ -71,6 +72,6 @@ class Repository extends Model
      */
     public function scopeForJob(Builder $query): Builder
     {
-        return $query->select(['id', 'node_id', 'full_name', 'user_id']);
+        return $query->select(['id', 'node_id', 'full_name', 'added_by', 'owner_id']);
     }
 }

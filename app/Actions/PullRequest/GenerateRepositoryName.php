@@ -10,17 +10,15 @@ class GenerateRepositoryName
     /**
      * @param PullRequest $pullRequest
      *
-     * @return bool
+     * @return string
      */
-    public function execute(PullRequest $pullRequest): bool
+    public function execute(PullRequest $pullRequest): string
     {
         [
             'username' => $username,
             'repository' => $repository,
         ] = app(PullRequestService::class)->getRegexMatch($pullRequest->html_url);
 
-        return $pullRequest->updateQuietly([
-            'repository' => "${username}/${repository}",
-        ]);
+        return sprintf('%s/%s', $username, $repository);
     }
 }

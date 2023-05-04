@@ -33,6 +33,7 @@ class StoreRepositoryRequest extends FormRequest
                     return $query->where('node_id', $this->get('nodeId'))->whereNull('deleted_at');
                 }),
             ],
+            'owner' => ['required', 'array'],
             'description' => ['nullable', 'string'],
             'language' => ['nullable', 'string'],
             'htmlUrl' => ['required', 'string'],

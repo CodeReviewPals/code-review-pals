@@ -2,6 +2,7 @@
 
 namespace App\DTO;
 
+use App\DTO\Github\Repository\OwnerData;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
@@ -16,7 +17,8 @@ class RepositoryData extends Data
         public string $fullName,
         public ?string $description,
         public ?string $language,
-        public string $htmlUrl
+        public string $htmlUrl,
+        public OwnerData $owner
     ) {
     }
 }

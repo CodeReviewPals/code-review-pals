@@ -16,6 +16,7 @@ export default function AddRepositoryModal({
         description: '',
         language: '',
         htmlUrl: '',
+        owner: {},
     });
 
     const providerLogos = { github: GithubLogo };

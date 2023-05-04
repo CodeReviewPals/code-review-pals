@@ -17,6 +17,7 @@ class RepositoryData extends Data
         public string $nodeId,
         public string $name,
         public string $fullName,
+        public string $htmlUrl,
         public bool $private,
         public OwnerData $owner,
         public ?string $description,
