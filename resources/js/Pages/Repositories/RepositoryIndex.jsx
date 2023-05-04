@@ -91,7 +91,7 @@ export default function RepositoryIndex({ auth, repositories }) {
                     rowRender={rowRender}
                     suffixName="Repository"
                     columnsTitle={['ID', 'Name', 'Description', 'Language', 'Actions']}
-                    customAddButton={()=> <></>}
+                    customAddButton={() => <></>}
                 />
             </div>
             {thirdPartyModal.active && (
