@@ -43,9 +43,9 @@ Our goal is to encourage developers of all levels to submit their code for revie
 
 > **WARNING** -  You need to have Composer (**Composer -V** to verify)  and Docker installed to continue
 
-First of all, you'll need to clone the project, copy this in your terminal and the download shall begin via SSH
+First of all, you'll need to fork the project, then clone your repo
 ```
-git clone git@github.com:CodeReviewPals/code-review-pals.git && cd code-review-pals
+git clone git@github.com:{YOUR_ACCOUNT_NAME}/code-review-pals.git && cd code-review-pals
 ```
 Duplicate the `.env.exemple` file as `.env`and change the following lines
 
@@ -78,7 +78,7 @@ GITHUB_REDIRECT=http://127.0.0.1/auth/callback/github
 ```
 </details>
 
-Install Sail on docker, install dependencies, then, launch the containers
+Install Sail on docker, install dependencies, initialize database, launch instances
 ```
 docker run --rm \
     -u "$(id -u):$(id -g)" \
@@ -89,6 +89,9 @@ docker run --rm \
 ```
 ```
 ./vendor/bin/sail npm i && ./vendor/bin/sail composer update
+```
+```
+./vendor/bin/sail artisan migrate:fresh --seed
 ```
 ```
 ./vendor/bin/sail up -d
