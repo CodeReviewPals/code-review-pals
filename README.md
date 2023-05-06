@@ -54,10 +54,6 @@ Duplicate the `.env.exemple` file as `.env`and change the following lines
 | `APP_URL=http://localhost` | `APP_URL=http://127.0.0.1` |
 | `DB_HOST=127.0.0.1`        | `DB_HOST=mysql`            |
 
-Generate the application key
-```
-./vendor/bin/sail php artisan key:generate 
-```
 <details>
 <summary><b>If you need to work on authenticated pages</b></summary>
 
@@ -87,9 +83,16 @@ docker run --rm \
     laravelsail/php82-composer:latest \
     composer install --ignore-platform-reqs
 ```
+
 ```
 ./vendor/bin/sail npm i && ./vendor/bin/sail composer update
 ```
+
+Generate the application key
+```
+./vendor/bin/sail php artisan key:generate 
+```
+
 ```
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
