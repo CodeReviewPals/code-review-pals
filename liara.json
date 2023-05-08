@@ -8,5 +8,8 @@
         "routeCache": true,
         "timezone": "UTC"
     },
+    "node": {
+        "version": "18.15.0"
+    },
     "cron": ["* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1"]
 }
