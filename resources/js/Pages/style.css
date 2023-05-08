@@ -17,7 +17,7 @@ button {
 }
 
 button:before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 50%;
@@ -54,8 +54,5 @@ button:active:before {
 
 .main-div {
     background: url('../../images/bg-logo.png') center center no-repeat,
-            linear-gradient(to bottom, #8BC6EC 0%, #9599E2 100%, #b7b7b7);
-
-
+        linear-gradient(to bottom, #8bc6ec 0%, #9599e2 100%, #b7b7b7);
 }
-
