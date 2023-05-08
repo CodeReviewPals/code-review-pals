@@ -42,7 +42,10 @@ export default function Welcome({ auth, title }) {
                     community."
                 </p>
                 <div className="mt-10 flex justify-center gap-x-6">
-                    <a className="group inline-flex items-center justify-center" href="/register">
+                    <a
+                        className="group inline-flex items-center justify-center"
+                        href="https://discord.gg/6hPQZb7bat"
+                    >
                         <Button
                             size="w-8"
                             text="Join us on Discord"
@@ -53,7 +56,7 @@ export default function Welcome({ auth, title }) {
                     </a>
                     <a
                         className="inline-flex items-center justify-center rounded-full py-2 px-4 text-lg"
-                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        href="https://github.com/codeReviewPals/code-review-pals/"
                     >
                         <Button
                             size="w-6"
