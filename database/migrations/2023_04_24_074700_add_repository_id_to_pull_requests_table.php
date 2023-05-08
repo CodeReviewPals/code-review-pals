@@ -14,10 +14,10 @@ return new class extends Migration {
         Schema::table('pull_requests', static function (Blueprint $table) {
             $table
                 ->foreignIdFor(Repository::class, 'repository_id')
+                ->nullable()
                 ->constrained()
                 ->onDelete('cascade')
-                ->onUpdate('cascade')
-                ->nullable();
+                ->onUpdate('cascade');
         });
     }
 
