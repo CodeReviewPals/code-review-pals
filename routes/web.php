@@ -1,13 +1,11 @@
 <?php
 
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\PullRequestController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\API\ThirdPartyRepositoriesController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +18,7 @@ use App\Http\Controllers\API\ThirdPartyRepositoriesController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login') && !Auth::check(),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', HomeController::class)->name('home');
 
 Route::group(
     [

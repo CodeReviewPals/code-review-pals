@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
+const serverSSL = (process.env.VITE_HTTPS || true) == true;
 export default defineConfig({
     plugins: [
         laravel({
@@ -14,6 +15,11 @@ export default defineConfig({
     server: {
         hmr: {
             host: 'localhost',
+        },
+    },
+    resolve: {
+        alias: {
+            '~': '/resources',
         },
     },
 });

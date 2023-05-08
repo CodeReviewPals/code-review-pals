@@ -76,8 +76,7 @@ export default function RepositoryIndex({ auth, repositories }) {
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     Repository{' '}
                     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                        {repositories.meta.total +
-                            (repositories.meta.total > 1 ? ' repositories' : ' repository')}
+                        {repositories.meta.total + (repositories.meta.total > 1 ? ' repositories' : ' repository')}
                     </span>
                 </h2>
             }
