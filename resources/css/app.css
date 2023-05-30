@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --main-bg-dark: #050b14;
+    --main-text-white: #f7f7f7;
+    --primary: #85c7ec;
+    --secondary: #ad97d0;
+    --border-subtle: #2f3948;
+    --subtle: #101a29;
+    --green: #4aa42a;
+    --gradient: linear-gradient(90deg, rgba(166, 205, 227, 1) 11%, rgba(173, 151, 208, 1) 87%);
+}
+
+.main-text-white {
+    color: var(--main-text-white);
+}
+.bg-main-white {
+    background: var(--main-text-white);
+}
+
+.text-gradient {
+    /* Set the background color */
+    background: var(--gradient);
+    /* Mask the color to the text, and remove the rest  */
+    -webkit-background-clip: text;
+    /* Make the text fill color value transparent so the masked background color comes through */
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+    background: var(--gradient);
+}
+
+.bg-subtle {
+    background: var(--subtle);
+    border: 1px solid var(--border-subtle);
+}
+
+.bg-subtle:active {
+    background: var(--subtle);
+    border: 2px solid var(--border-subtle);
+}
