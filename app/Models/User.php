@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\Auth\SocialiteProvider;
+use Discord\Parts\User\User as DiscordUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,5 +64,10 @@ class User extends Authenticatable
     public function repositories(): HasMany
     {
         return $this->hasMany(Repository::class);
+    }
+
+    public function scopeDiscord(Builder $query, DiscordUser $user): Builder
+    {
+        return $query->where('discord_id', $user->id);
     }
 }
