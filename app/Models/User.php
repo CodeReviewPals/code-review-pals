@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'avatar_url',
         'github_id',
+        'discord_id',
         'github_token',
         'github_refresh_token',
         'password',
