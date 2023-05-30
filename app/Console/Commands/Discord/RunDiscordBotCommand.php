@@ -7,6 +7,7 @@ use Discord\Parts\Channel\Message;
 use Discord\WebSockets\Event;
 use Discord\WebSockets\Intents;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 
 class RunDiscordBotCommand extends Command
 {
@@ -29,6 +30,8 @@ class RunDiscordBotCommand extends Command
      */
     public function handle(): void
     {
+        $this->storeProcess();
+
         $discord = new Discord([
             'token' => config('services.discord.bot_token'),
             'intents' => Intents::getAllIntents(),
@@ -61,5 +64,11 @@ class RunDiscordBotCommand extends Command
             }
             continue;
         }
+    }
+
+    private function storeProcess()
+    {
+        $pid = getmypid();
+        Cache::forever(config('cache.discord.process_id'), $pid);
     }
 }
