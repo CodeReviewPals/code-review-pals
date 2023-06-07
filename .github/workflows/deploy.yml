@@ -21,4 +21,4 @@ jobs:
               run: |
                   npm i -g @liara/cli@3
                   liara deploy --app="codereviewpals" --api-token="$LIARA_TOKEN" --detach
-                  liara shell --app="codereviewpals" --api-token="$LIARA_TOKEN" --command="php artisan migrate --force && php artisan horizon:terminate"
+                  liara shell --app="codereviewpals" --api-token="$LIARA_TOKEN" --command="php artisan migrate --force && php artisan horizon:terminate --wait && php artisan discord:terminate"

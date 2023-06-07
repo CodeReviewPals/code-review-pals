@@ -8,6 +8,7 @@ use App\Actions\Github\PullRequest\CreatePullRequest;
 use App\Http\Requests\PullRequest\StorePullRequestRequest;
 use App\DTO\Github\Repository\PullRequest\PullRequestData;
 use App\Actions\Github\PullRequest\FetchPullRequestInformation;
+use App\Models\User;
 
 class PullRequestService
 {
@@ -66,13 +67,9 @@ class PullRequestService
      *
      * @return PullRequest|null
      */
-    public function createFromUrl(StorePullRequestRequest $request): ?PullRequest
+    public function createFromUrl(string $url, User $user): ?PullRequest
     {
-        if (!$request->user()) {
-            exit();
-        }
-
-        $pullRequestData = $this->getDataFromUrl(url: (string) $request->get('link'));
+        $pullRequestData = $this->getDataFromUrl(url: $url);
 
         if (!$pullRequestData instanceof PullRequestData) {
             exit();
@@ -80,7 +77,7 @@ class PullRequestService
 
         return app(CreatePullRequest::class)->execute(
             pullRequestData: $pullRequestData,
-            user: $request->user()
+            user: $user
         );
     }
 }

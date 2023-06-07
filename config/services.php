@@ -39,6 +39,18 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect'      => env('GITHUB_REDIRECT'),
         'scopes'        => env('GITHUB_SCOPES', 'admin:repo_hook'),
+        'base_path'     => env('GITHUB_API_BASEPATH', 'https://api.github.com/'),
+    ],
+
+    'discord' => [
+        'app_id'     => env('DISCORD_APP_ID'),
+        'public_key' => env('DISCORD_PUBLIC_KEY'),
+        'bot_token'  => env('DISCORD_BOT_TOKEN'),
+        'guild_id'   => env('DISCORD_GUILD_ID'),
+        'channels'   => [
+            'code_reviews' => env('DISCORD_CODE_REVIEW_CHANNELS_ID'),
+        ],
+        'base_path' => env('DISCORD_API_BASEPATH', 'https://discord.com/api/v10/')
     ],
 
 ];

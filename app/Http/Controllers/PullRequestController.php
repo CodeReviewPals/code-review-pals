@@ -42,7 +42,11 @@ class PullRequestController extends Controller
      */
     public function store(StorePullRequestRequest $request): RedirectResponse
     {
-        $this->service->createFromUrl($request);
+        if (!$request->user()) {
+            exit();
+        }
+
+        $this->service->createFromUrl((string) $request->get('link'), $request->user());
 
         return to_route('pull-requests.index');
     }
