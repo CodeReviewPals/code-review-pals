@@ -19,7 +19,9 @@
 .bg-main-white {
     background: var(--main-text-white);
 }
-
+.text-primary {
+    color: var(--primary);
+}
 .text-gradient {
     /* Set the background color */
     background: var(--gradient);

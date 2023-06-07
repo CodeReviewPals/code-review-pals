@@ -89,10 +89,40 @@ export default function Welcome({ auth, title }) {
                     </a>
                 </div>
 
-                <div>
+                {/* <div>
                     <img src={arrow} className="invert m-auto mt-28 rotate-90 w-5" />
-                </div>
+                </div> */}
             </div>
+            {/* TODO based on design */}
+            <footer className="mt-28">
+                <h3 className="main-text-white text-3xl text-center font-bold">
+                    Join the code review{' '}
+                    <b className="text-primary font-bold ">at a bigger scale</b>
+                </h3>
+                <div className="flex mt-9 flex-row justify-center">
+                    <div className="flex flex-col mx-2">
+                        <button className="bg-main-white text-black font-bold py-2 px-4 rounded border">
+                            <img
+                                className="inline-block mr-2 w-6"
+                                src={DiscordLogo}
+                                alt="Join Discord"
+                            />
+                            Discord
+                        </button>
+                    </div>
+                    <div className="flex flex-col mx-2">
+                        <button className="bg-main-white text-black font-bold py-2 px-4 rounded border">
+                            <img
+                                className="inline-block mr-2 w-6 invert"
+                                src={GithubLogo}
+                                alt="Github"
+                            />
+                            Github
+                        </button>
+                    </div>
+                </div>
+                <h6 className="text-center main-text-white my-9">CodeReviewPals ©2023</h6>
+            </footer>
         </>
     );
 }
