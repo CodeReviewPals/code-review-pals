@@ -20,5 +20,5 @@ jobs:
                   LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
               run: |
                   npm i -g @liara/cli@3
-                  liara deploy --app="codereviewpals" --api-token="$LIARA_TOKEN" --detach
+                  liara deploy --app="codereviewpals" --api-token="$LIARA_TOKEN"
                   liara shell --app="codereviewpals" --api-token="$LIARA_TOKEN" --command="bash deploy.sh"
