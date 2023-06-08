@@ -70,7 +70,7 @@ class RunDiscordBotCommand extends Command
             }
             continue;
         }
-        $message->reply('Your command is not valid.');
+        $inputMessage->reply('Your command is not valid.');
     }
 
     private function storeProcess()
