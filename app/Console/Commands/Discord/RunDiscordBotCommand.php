@@ -8,6 +8,7 @@ use Discord\WebSockets\Event;
 use Discord\WebSockets\Intents;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class RunDiscordBotCommand extends Command
 {
@@ -52,7 +53,12 @@ class RunDiscordBotCommand extends Command
             // don't listen to messages without !
             return;
         }
-        return $this->messageRouting($message, $discord);
+        try {
+            return $this->messageRouting($message, $discord);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), $th->getTrace());
+            dump($th->getMessage());
+        }
     }
 
     protected function messageRouting(Message $inputMessage, Discord $discord)
