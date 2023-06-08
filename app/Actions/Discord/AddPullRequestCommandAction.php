@@ -17,9 +17,9 @@ class AddPullRequestCommandAction
 
     public function __invoke(Message $message, Discord $discord, array $matches)
     {
-        $url = $matches[1] ?? '';
-        $user = $this->getUser($message->author);
         try {
+            $url = $matches[1] ?? '';
+            $user = $this->getUser($message->author);
             $this->service->createFromUrl($url, $user);
             $message->reply(
                 "Thank you for your interest ❤️ \n Your Pull Request submitted successfully."
