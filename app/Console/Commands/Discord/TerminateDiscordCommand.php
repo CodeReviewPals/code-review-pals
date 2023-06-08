@@ -34,6 +34,8 @@ class TerminateDiscordCommand extends Command
                     posix_strerror(posix_get_last_error()) .
                     ')'
             );
+            return;
         }
+        cache()->delete(config('cache.discord.process_id'));
     }
 }
