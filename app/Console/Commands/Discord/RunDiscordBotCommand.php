@@ -53,12 +53,7 @@ class RunDiscordBotCommand extends Command
             // don't listen to messages without !
             return;
         }
-        try {
-            return $this->messageRouting($message, $discord);
-        } catch (\Throwable $th) {
-            Log::error($th->getMessage(), $th->getTrace());
-            dump($th->getMessage());
-        }
+        return $this->messageRouting($message, $discord);
     }
 
     protected function messageRouting(Message $inputMessage, Discord $discord)
