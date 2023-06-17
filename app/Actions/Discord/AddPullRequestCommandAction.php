@@ -2,6 +2,7 @@
 
 namespace App\Actions\Discord;
 
+use App\Jobs\CreatePullRequestByUrlJob;
 use App\Models\User;
 use App\Services\Github\PullRequestService;
 use Discord\Builders\MessageBuilder;
@@ -19,16 +20,12 @@ class AddPullRequestCommandAction
     {
         $url = $matches[1] ?? '';
         $user = $this->getUser($message->author);
-        try {
-            $this->service->createFromUrl($url, $user);
-            $message->reply(
-                "Thank you for your interest ❤️ \n Your Pull Request submitted successfully."
-            );
-        } catch (\Throwable $th) {
-            $message->reply(
-                'error occurred on creating PR. please check your URL and if everything is ok contact with admins 😉'
-            );
-        }
+
+        CreatePullRequestByUrlJob::dispatch($url, $user);
+
+        $message->reply(
+            "Thank you for your interest ❤️ \n Your Pull Request submitted successfully."
+        );
     }
 
     public function getUser(DiscordUser $discordUser): User
