@@ -27,7 +27,7 @@ class CreateChannel
         $request = new CreateGuildChannel(
             name: $name,
             channelType: $channelType,
-            parentId: $parentId,
+            parentId: $parentId
         );
 
         return $this->connector->send($request);

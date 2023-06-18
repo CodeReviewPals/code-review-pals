@@ -16,17 +16,19 @@ class CreateWebhookFromRepository
     public function execute(Repository $repository): Model|bool
     {
         try {
-            $webhookData = app(CreateWebhook::class)->execute(
-                username: $repository->username,
-                repository: $repository->repository,
-                secret: Hash::make($repository->node_id),
-            )->dtoOrFail();
+            $webhookData = app(CreateWebhook::class)
+                ->execute(
+                    username: $repository->username,
+                    repository: $repository->repository_name,
+                    secret: Hash::make($repository->node_id)
+                )
+                ->dtoOrFail();
 
             return $repository->webhooks()->save(
                 new Webhook([
-                    'title'   => $repository->full_name . ' hook',
+                    'title' => $repository->full_name . ' hook',
                     'hook_id' => $webhookData->id,
-                ]),
+                ])
             );
         } catch (Exception) {
             return false;

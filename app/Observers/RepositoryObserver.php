@@ -4,8 +4,6 @@ namespace App\Observers;
 
 use Exception;
 use App\Models\Repository;
-use Illuminate\Support\Facades\Bus;
-use App\Jobs\Discord\Channels\CreateThreadFromRepositoryJob;
 use App\Actions\Github\Repository\DeleteWebhookFromRepository;
 use App\Jobs\Github\Repository\CreateWebhookFromRepositoryJob;
 
@@ -25,11 +23,6 @@ class RepositoryObserver
     public function created(Repository $repository): void
     {
         CreateWebhookFromRepositoryJob::dispatch($repository);
-
-        Bus::chain([
-            new CreateThreadFromRepositoryJob($repository),
-            //TODO: Add first message
-        ])->dispatch();
     }
 
     /**

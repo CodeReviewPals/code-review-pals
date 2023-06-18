@@ -29,12 +29,17 @@ class Repository extends Model
         'description',
         'language',
         'html_url',
+        'topics',
+    ];
+
+    protected $casts = [
+        'topics' => 'array',
     ];
 
     /**
      * @var string[]
      */
-    protected $appends = ['username', 'repository'];
+    protected $appends = ['username', 'repository_name'];
 
     /**
      * @return BelongsTo<User, Repository>
@@ -65,10 +70,11 @@ class Repository extends Model
      */
     public function threadChannel(): MorphOne
     {
-        return $this->morphOne(Channel::class, 'channelable')
-            ->ofMany([], function (Builder $query) {
-                $query->whereType(ChannelType::FORUM);
-            });
+        return $this->morphOne(Channel::class, 'channelable')->ofMany([], function (
+            Builder $query
+        ) {
+            $query->whereType(ChannelType::FORUM);
+        });
     }
 
     /**
@@ -82,7 +88,7 @@ class Repository extends Model
     /**
      * @return Attribute<string, never>
      */
-    public function repository(): Attribute
+    public function repositoryName(): Attribute
     {
         return Attribute::make(get: fn() => explode('/', $this->full_name)[1]);
     }

@@ -17,12 +17,13 @@ class PullRequest extends Model
      */
     protected $fillable = [
         'node_id',
-        'repository',
+        'repository_name',
         'title',
         'html_url',
         'status',
         'description',
         'user_id',
+        'repository_id',
     ];
 
     /**
@@ -38,5 +39,10 @@ class PullRequest extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function repository(): BelongsTo
+    {
+        return $this->belongsTo(Repository::class);
     }
 }

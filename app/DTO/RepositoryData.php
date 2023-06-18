@@ -18,6 +18,7 @@ class RepositoryData extends Data
         public ?string $description,
         public ?string $language,
         public string $htmlUrl,
+        public array $topics,
         public OwnerData $owner
     ) {
     }
