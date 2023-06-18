@@ -20,6 +20,7 @@
         "sammyjo20/saloon": "^2.0",
         "sammyjo20/saloon-laravel": "^2.0",
         "spatie/laravel-data": "^3.2",
+        "team-reflex/discord-php": "^7.3",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

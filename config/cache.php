@@ -107,4 +107,9 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
+    'keys' => [
+        'discord' => [
+            'process_id' => 'discord-run-process_id',
+        ],
+    ],
 ];
