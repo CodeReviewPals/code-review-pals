@@ -8,6 +8,7 @@ use Discord\WebSockets\Event;
 use Discord\WebSockets\Intents;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class RunDiscordBotCommand extends Command
 {
@@ -64,6 +65,7 @@ class RunDiscordBotCommand extends Command
             }
             continue;
         }
+        $inputMessage->reply('Your command is not valid.');
     }
 
     private function storeProcess()

@@ -23,7 +23,9 @@ class CreateRepositoryByPullRequest
      */
     public function execute(PullRequest $pullRequest): Repository
     {
-        $repository = $this->repositoryService->getRepositoryByFullName($pullRequest->repository);
+        $repository = $this->repositoryService->getRepositoryByFullName(
+            $pullRequest->repository_name
+        );
         if (!is_null($repository)) {
             return $repository;
         }

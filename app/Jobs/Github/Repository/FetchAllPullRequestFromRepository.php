@@ -35,7 +35,7 @@ class FetchAllPullRequestFromRepository implements ShouldQueue
             $pullRequests = app(GetAllPullRequest::class)
                 ->execute(
                     username: $this->repository->username,
-                    repository: $this->repository->repository
+                    repository: $this->repository->repository_name
                 )
                 ->dtoOrFail();
 

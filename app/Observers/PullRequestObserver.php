@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\PullRequest;
 use App\Actions\PullRequest\GenerateRepositoryName;
 use App\Actions\Repository\CreateRepositoryByPullRequest;
+use App\Jobs\Discord\Channels\CreateThreadFromPullRequestJob;
 
 class PullRequestObserver
 {
@@ -13,10 +14,12 @@ class PullRequestObserver
      */
     public function created(PullRequest $pullRequest): void
     {
-        $pullRequest->repository = app(GenerateRepositoryName::class)->execute($pullRequest);
+        $pullRequest->repository_name = app(GenerateRepositoryName::class)->execute($pullRequest);
         $repository = app(CreateRepositoryByPullRequest::class)->execute($pullRequest);
         $pullRequest->repository_id = $repository->id;
         $pullRequest->saveQuietly();
+
+        CreateThreadFromPullRequestJob::dispatch($pullRequest);
     }
 
     /**

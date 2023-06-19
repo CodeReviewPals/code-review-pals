@@ -71,9 +71,7 @@ class PullRequestService
     {
         $pullRequestData = $this->getDataFromUrl(url: $url);
 
-        if (!$pullRequestData instanceof PullRequestData) {
-            exit();
-        }
+        throw_if(!$pullRequestData instanceof PullRequestData, 'invalid pull request');
 
         return app(CreatePullRequest::class)->execute(
             pullRequestData: $pullRequestData,

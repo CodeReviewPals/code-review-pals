@@ -3,11 +3,9 @@
 namespace App\Observers;
 
 use Exception;
-use App\Models\Webhook;
 use App\Models\Repository;
-use App\Actions\Github\Repository\CreateWebhook;
 use App\Actions\Github\Repository\DeleteWebhookFromRepository;
-use App\DTO\Github\Repository\Webhook\WebhookCreatedData;
+use App\Jobs\Github\Repository\CreateWebhookFromRepositoryJob;
 
 class RepositoryObserver
 {
@@ -24,21 +22,7 @@ class RepositoryObserver
      */
     public function created(Repository $repository): void
     {
-        try {
-            /** @var WebhookCreatedData $webhookData */
-            $webhookData = app(CreateWebhook::class)
-                ->execute($repository)
-                ->dtoOrFail();
-
-            $repository->webhooks()->save(
-                new Webhook([
-                    'title' => $repository->full_name . ' hook',
-                    'hook_id' => $webhookData->id,
-                ])
-            );
-        } catch (Exception $e) {
-            return;
-        }
+        CreateWebhookFromRepositoryJob::dispatch($repository);
     }
 
     /**

@@ -42,7 +42,7 @@ class FetchWebhook
         if ($model instanceof Repository) {
             return [
                 'username' => $model->username,
-                'repository' => $model->repository,
+                'repository' => $model->repository_name,
             ];
         }
         return app(PullRequestService::class)->getRegexMatch($model->html_url);
